@@ -10,24 +10,60 @@
   <audio id="bg-music" src="assets/music.mp3" preload="auto"></audio>
 
   <!-- KİLİT EKRANI -->
-  <div id="lock-screen" class="lock-screen">
-    <div id="lock-box" class="lock-box">
-      <div class="lock-icon">🔒</div>
-      <h2>Yılbaşı Hediyesi Kilidi</h2>
-      <p id="lock-message">Kendi yılbaşı kodunu gir.</p>
+ <div id="lock-screen" class="lock-screen">
+  <div id="lock-box" class="lock-box">
+    <div class="lock-icon">🔒</div>
+    <h2>Yılbaşı Hediyesi Kilidi</h2>
+    <p id="lock-message">Kendi yılbaşı kodunu gir.</p>
 
-      <input
-        id="code-input"
-        type="text"
-        placeholder="Örn: ALI2025"
-        autocomplete="off"
-      />
+    <input
+      id="code-input"
+      type="text"
+      placeholder="Örn: BURA2025"
+      autocomplete="off"
+    />
 
-      <button id="unlock-btn">Kilidi Aç</button>
+    <button id="unlock-btn">Kilidi Aç</button>
 
-      <p class="lock-hint">
-        Kodu bilmiyorsan bu sayfa senin için değil demektir 🙂
+    <p class="lock-hint">
+      Kodu bilmiyorsan bu sayfa senin için değil demektir 🙂
+    </p>
+
+    <!-- MİNİ QUIZ PANELİ -->
+    <div id="quiz-panel" class="quiz-panel hidden">
+      <h3>Mini Yılbaşı Quiz</h3>
+      <p class="quiz-info">
+        3 sorudan 3’ünü de doğru bilirsen 1 kez daha şifre deneme hakkı kazanacaksın.
       </p>
+
+      <div class="quiz-question" data-answer="b">
+        <p>1) Yılbaşı ağacına genelde ne asılır?</p>
+        <label><input type="radio" name="q1" value="a" /> Patates</label>
+        <label><input type="radio" name="q1" value="b" /> Süs ve ışıklar</label>
+        <label><input type="radio" name="q1" value="c" /> Ayakkabı</label>
+      </div>
+
+      <div class="quiz-question" data-answer="c">
+        <p>2) Yılbaşında arkadaşına ne dilersin?</p>
+        <label><input type="radio" name="q2" value="a" /> Daha fazla ödev</label>
+        <label><input type="radio" name="q2" value="b" /> Sürekli sınav</label>
+        <label><input type="radio" name="q2" value="c" /> Mutluluk ve sağlık</label>
+      </div>
+
+      <div class="quiz-question" data-answer="a">
+        <p>3) Kar yağınca hangisi yapılır?</p>
+        <label><input type="radio" name="q3" value="a" /> Kardan adam</label>
+        <label><input type="radio" name="q3" value="b" /> Kumdan kale</label>
+        <label><input type="radio" name="q3" value="c" /> Dondurma tezgâhı</label>
+      </div>
+
+      <button id="quiz-submit" type="button">Quiz’i Bitir</button>
+      <p id="quiz-message" class="quiz-message"></p>
+    </div>
+
+    <div id="boom-circle" class="boom-circle"></div>
+  </div>
+</div>
 
       <!-- Patlama efekti -->
       <div id="boom-circle" class="boom-circle"></div>
