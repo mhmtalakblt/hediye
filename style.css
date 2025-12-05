@@ -705,3 +705,62 @@ body::after {
   50%  { transform: rotate(-5deg); }
   100% { transform: rotate(18deg); }
 }
+
+/* ============= MİNİ QUIZ PANELİ ============= */
+
+.quiz-panel {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: left;
+}
+
+.quiz-panel h3 {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.quiz-info {
+  font-size: 12px;
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+.quiz-question {
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.quiz-question p {
+  margin-bottom: 4px;
+}
+
+.quiz-question label {
+  display: block;
+  margin-left: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+#quiz-submit {
+  margin-top: 6px;
+  width: 100%;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #f9fafb;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#quiz-submit:hover {
+  filter: brightness(1.05);
+}
+
+.quiz-message {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #e5e7eb;
+}
+
