@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini Oyun</title>
+    <style>
+        body {
+            background: #020814;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .btn {
+            padding: 8px 16px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            background: #ffb347;
+        }
+        #game-area {
+            position: relative;
+            margin: 0 auto;
+            margin-top: 40px;
+            width: 320px;
+            height: 320px;
+            border-radius: 16px;
+            background: radial-gradient(circle at top, #234 0%, #000 70%);
+            overflow: hidden;
+        }
+        #ball {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: #ff4b5c;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <button class="btn" onclick="location.href='agac.html'">← Ağaç</button>
+    <h2>Mini Oyun</h2>
+    <button class="btn" onclick="location.href='pdf.html'">PDF</button>
+</div>
+
+<p>Topa tıkladıkça skorun artsın. 30 saniyede kaç puan yapacaksın?</p>
+<h3>Skor: <span id="score">0</span></h3>
+<h4>Kalan süre: <span id="time">30</span>s</h4>
+
+<div id="game-area">
+    <div id="ball">+</div>
+</div>
+
+<script>
+    const gameArea = document.getElementById("game-area");
+    const ball = document.getElementById("ball");
+    const scoreSpan = document.getElementById("score");
+    const timeSpan = document.getElementById("time");
+
+    let score = 0;
+    let timeLeft = 30;
+    let gameOver = false;
+
+    function moveBall() {
+        if (gameOver) return;
+
+        const areaRect = gameArea.getBoundingClientRect();
+        const size = 50;
+
+        const maxX = areaRect.width - size;
+        const maxY = areaRect.height - size;
+
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+
+        ball.style.left = x + "px";
+        ball.style.top = y + "px";
+    }
+
+    ball.addEventListener("click", () => {
+        if (gameOver) return;
+        score++;
+        scoreSpan.textContent = score;
+        moveBall();
+    });
+
+    // Sayaç
+    const timer = setInterval(() => {
+        timeLeft--;
+        timeSpan.textContent = timeLeft;
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            gameOver = true;
+            timeSpan.textContent = 0;
+            alert("Süre bitti! Skorun: " + score);
+        }
+    }, 1000);
+
+    // Oyunu başlatırken topu hareket ettir
+    moveBall();
+</script>
+
+</body>
+</html>
