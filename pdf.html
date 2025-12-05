@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>PDF Sayfası</title>
+    <style>
+        body {
+            background: #0b1020;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .btn {
+            padding: 8px 16px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            background: #4cd964;
+        }
+        iframe {
+            width: 100%;
+            max-width: 800px;
+            height: 500px;
+            border: none;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <button class="btn" onclick="location.href='agac.html'">← Geri (Ağaç)</button>
+    <h2>PDF</h2>
+    <button class="btn" onclick="location.href='game.html'">Mini Oyun</button>
+</div>
+
+<!-- Drive linkini /preview ile kullan -->
+<iframe 
+    src="https://drive.google.com/file/d/1QI6iIrgYiKcng9iEIrbMKj0Fi51mynVh/preview"
+    allow="autoplay">
+</iframe>
+
+</body>
+</html>
