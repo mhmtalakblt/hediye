@@ -211,12 +211,16 @@ document.body.addEventListener("click", (e) => {
 /* ========== MÜZİK BAŞLATMA ========== */
 
 function startMusic() {
+function startMusic() {
   if (!audio) {
     step = 2;
     instruction.textContent =
-      "Müzik başlatılamadı ama sorun değil. Şimdi tekrar dokun, süsünü takalım.";
+      "Müzik elementi bulunamadı ama sorun değil. Şimdi tekrar dokun, süsünü takalım.";
     return;
   }
+
+  // Her denemede başa sar
+  audio.currentTime = 0;
 
   audio
     .play()
@@ -227,12 +231,11 @@ function startMusic() {
     })
     .catch((err) => {
       console.warn("Müzik çalınamadı:", err);
-      step = 2;
+      step = 2; // akışı yine ilerlet
       instruction.textContent =
-        "Tarayıcı müziği engelledi ama sorun değil. Şimdi tekrar dokun, süsünü takalım.";
+        "Tarayıcı müziği engelliyor gibi görünüyor ama sorun değil. Şimdi tekrar dokun, süsünü takalım.";
     });
 }
-
 /* ========== SÜS TAKMA ========== */
 
 function attachPersonOrnament() {
