@@ -29,13 +29,13 @@ const boomCircle = document.getElementById("boom-circle");
 // KOD -> KİŞİ HARİTASI
 const codeMap = {
   BUROCKKK: { className: "ornament-red", name: "Burak" },
-  ZEYN2025: { className: "ornament-gold", name: "Zeynep" },
-  ESRA2025: { className: "ornament-blue", name: "Esra" },
-  HIRA2025: { className: "ornament-green", name: "Hira" },
-  SANM2025: { className: "ornament-purple", name: "Sanem" },
-  YUSU2025: { className: "ornament-pink", name: "Yusufi" },
-  AYSE2025: { className: "ornament-teal", name: "Ayşenur" },
-  IPEK2025: { className: "ornament-silver", name: "İpek" }
+  OSIMIDIASER: { className: "ornament-gold", name: "Zeynep" },
+  ESRA2026: { className: "ornament-blue", name: "Esra" },
+  HIRA2026: { className: "ornament-green", name: "Hira" },
+  BECHOSENN: { className: "ornament-purple", name: "Sanem" },
+  YUSUFIR12: { className: "ornament-pink", name: "Yusufi" },
+  AYSE2026: { className: "ornament-teal", name: "Ayşenur" },
+  IPEK2026: { className: "ornament-silver", name: "İpek" }
 };
 
 /* ========== KİLİT AÇMA ========== */
