@@ -572,3 +572,103 @@ body::after {
     width: 100%;
   }
 }
+/* ===========================
+   KARADAN ADAM
+=========================== */
+
+.snowman {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  animation: float-snowman 4s ease-in-out infinite;
+}
+
+@keyframes float-snowman {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+.snowman-body {
+  position: relative;
+  width: 120px;
+  height: 170px;
+}
+
+.snowman-head {
+  width: 70px;
+  height: 70px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 12px rgba(255,255,255,0.4);
+}
+
+.snowman-face .eye {
+  width: 8px;
+  height: 8px;
+  background: black;
+  border-radius: 50%;
+  position: absolute;
+  top: 25px;
+}
+
+.snowman-face .eye.left { left: 40px; }
+.snowman-face .eye.right { left: 52px; }
+
+.snowman-face .nose {
+  width: 14px;
+  height: 14px;
+  background: orange;
+  border-radius: 50%;
+  position: absolute;
+  left: 46px;
+  top: 38px;
+}
+
+.snowman-belly {
+  width: 100px;
+  height: 100px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 18px rgba(255,255,255,0.4);
+}
+
+.snowman-buttons .btn {
+  width: 10px;
+  height: 10px;
+  background: black;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.snowman-buttons .btn:nth-child(1) { top: 80px; }
+.snowman-buttons .btn:nth-child(2) { top: 100px; }
+.snowman-buttons .btn:nth-child(3) { top: 120px; }
+
+.snowman-arms .arm {
+  width: 40px;
+  height: 4px;
+  background: #8b5a2b;
+  position: absolute;
+  top: 70px;
+}
+
+.arm.left {
+  left: -20px;
+  transform: rotate(-20deg);
+}
+
+.arm.right {
+  right: -20px;
+  transform: rotate(20deg);
+}
