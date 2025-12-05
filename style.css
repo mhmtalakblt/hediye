@@ -120,8 +120,8 @@ body::after {
 
 .tree {
   position: relative;
-  width: 210px;
-  height: 260px;
+  width: 220px;
+  height: 320px; /* 4 kat için biraz daha yüksek */
 }
 
 /* Hafif yukarı–aşağı hareket */
