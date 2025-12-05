@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Yılbaşı Ağacı</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <audio id="bg-music" src="assets/music.mp3" preload="auto"></audio>
+
+  <!-- KİLİT EKRANI -->
+  <div id="lock-screen" class="lock-screen">
+    <div id="lock-box" class="lock-box">
+      <div class="lock-icon">🔒</div>
+      <h2>Yılbaşı Hediyesi Kilidi</h2>
+      <p id="lock-message">Kendi yılbaşı kodunu gir.</p>
+
+      <input
+        id="code-input"
+        type="text"
+        placeholder="Örn: BURA2025"
+        autocomplete="off"
+      />
+
+      <button id="unlock-btn">Kilidi Aç</button>
+
+      <p class="lock-hint">
+        Kodu bilmiyorsan bu sayfa senin için değil demektir 🙂
+      </p>
+
+      <!-- Patlama efekti -->
+      <div id="boom-circle" class="boom-circle"></div>
+    </div>
+  </div>
+
+  <!-- ASIL İÇERİK (kilit açılana kadar gizli) -->
+  <div id="main-content" class="page hidden">
+    <div class="info-panel">
+      <h1>🎄 Mutlu Yıllar 🎄</h1>
+      <p id="instruction">
+        Hoş geldin! Kilidi açtıktan sonra tıklayarak müziği başlatabilirsin.
+      </p>
+    </div>
+
+    <div class="tree-area">
+      <div class="tree-wrapper">
+        <div class="tree tree-3d">
+          <div class="tree-layer layer1"></div>
+          <div class="tree-layer layer2"></div>
+          <div class="tree-layer layer3"></div>
+          <div class="tree-trunk"></div>
+
+          <!-- Süs burada belirecek -->
+          <div id="ornament" class="ornament hidden"></div>
+        </div>
+      </div>
+
+      <div class="gift-zone">
+        <div id="giftBox" class="gift-box">
+          <div class="gift-lid"></div>
+          <div class="gift-body"></div>
+          <div class="gift-ribbon-vertical"></div>
+          <div class="gift-ribbon-horizontal"></div>
+        </div>
+        <p id="gift-text" class="gift-text">
+          Önce kilidi aç, müziği başlat ve ağaca süsü tak.
+        </p>
+      </div>
+
+      <p id="ornament-text" class="ornament-text"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
