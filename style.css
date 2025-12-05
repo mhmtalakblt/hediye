@@ -115,19 +115,20 @@ body::after {
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: none; /* 3B dönme yok, sade */
+  perspective: none;
 }
 
 .tree {
   position: relative;
-  width: 220px;
-  height: 320px; /* 4 kat için biraz daha yüksek */
+  width: 210px;
+  height: 280px; /* çok yüksek değil, mobile sığsın */
 }
 
 /* Hafif yukarı–aşağı hareket */
 .tree-3d {
   animation: tree-float 6s ease-in-out infinite;
 }
+
 
 @keyframes tree-float {
   0% {
@@ -162,7 +163,7 @@ body::after {
 .tree::before {
   content: "★";
   position: absolute;
-  top: 8px;
+  top: 16px; /* biraz aşağı aldım ki üst kat görünür olsun */
   left: 50%;
   transform: translateX(-50%);
   font-size: 20px;
@@ -171,6 +172,7 @@ body::after {
 }
 
 /* Katmanlar – 4 katlı düz bloklar */
+/* Ortak stil */
 .tree-layer {
   position: absolute;
   left: 50%;
@@ -183,51 +185,51 @@ body::after {
     inset -8px -10px 14px rgba(0, 0, 0, 0.2);
 }
 
-/* En küçük kat – en üst */
+/* En küçük KAT – en üst */
 .layer0 {
-  bottom: 230px;
+  bottom: 210px;
   width: 90px;
-  height: 35px;
+  height: 32px;
 }
 
-/* 2. en küçük kat */
+/* 2. kat */
 .layer1 {
-  bottom: 190px;
+  bottom: 170px;
   width: 120px;
-  height: 40px;
+  height: 36px;
 }
 
-/* Orta kat */
+/* 3. kat */
 .layer2 {
-  bottom: 145px;
+  bottom: 125px;
   width: 160px;
-  height: 45px;
+  height: 42px;
 }
 
-/* En geniş alt kat */
+/* Alt en geniş kat */
 .layer3 {
-  bottom: 95px;
+  bottom: 80px;
   width: 200px;
-  height: 50px;
+  height: 48px;
 }
-/* Gövde – kısa, yuvarlak */
+
+/* Gövde */
 .tree-trunk {
   position: absolute;
-  bottom: 35px;
+  bottom: 32px;
   left: 50%;
   transform: translateX(-50%);
   width: 40px;
-  height: 45px;
+  height: 44px;
   border-radius: 12px;
   background: linear-gradient(135deg, #8b5a2b, #c68b47);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.6);
 }
 
-/* ============= SÜS ============= */
-
+/* Süs – ortalarda bir yerde */
 .ornament {
   position: absolute;
-  top: 80px; /* ağacın ortasına yakın */
+  top: 110px;
   left: 50%;
   transform: translateX(-50%);
   width: 28px;
@@ -238,7 +240,6 @@ body::after {
     0 0 8px rgba(0, 0, 0, 0.6),
     0 0 10px rgba(255, 255, 255, 0.35);
 }
-
 /* Renk varyasyonları */
 .ornament-red {
   background: radial-gradient(circle, #ffb3b3, #ff2e2e);
