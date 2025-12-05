@@ -28,7 +28,7 @@ const boomCircle = document.getElementById("boom-circle");
 
 // KOD -> KİŞİ HARİTASI
 const codeMap = {
-  BURA2025: { className: "ornament-red", name: "Burak" },
+  BUROCKKK: { className: "ornament-red", name: "Burak" },
   ZEYN2025: { className: "ornament-gold", name: "Zeynep" },
   ESRA2025: { className: "ornament-blue", name: "Esra" },
   HIRA2025: { className: "ornament-green", name: "Hira" },
