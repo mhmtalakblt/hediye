@@ -1,12 +1,15 @@
-// Adımlar:
-// 0 -> kilit açıldı ama müzik henüz başlamadı
-// 2 -> müzik başladı, ikinci tık süs takacak
-// 3 -> süs takıldı, hediye kutusu aktif
+// Adım mantığı:
+//
+// step = 0 → kilit açıldı, müzik için ilk deneme yapılmadı
+// step = 1 → tarayıcı müziği engelledi, tekrar deneme gerekiyor
+// step = 2 → müzik oynuyor, bir sonraki tık süs takacak
+// step = 3 → süs takıldı, hediye kutusu açılabilir
 
 let step = 0;
 let unlocked = false;
 let currentPerson = null;
 
+// Genel elemanlar
 const audio = document.getElementById("bg-music");
 const instruction = document.getElementById("instruction");
 const ornament = document.getElementById("ornament");
@@ -24,7 +27,7 @@ const unlockBtn = document.getElementById("unlock-btn");
 const boomCircle = document.getElementById("boom-circle");
 
 // KOD -> KİŞİ HARİTASI
-// Kodları ve isimleri burada kendine göre düzenle
+// Buradaki kod ve isimleri kendine göre düzenleyebilirsin
 const codeMap = {
   BURA2025: { className: "ornament-red", name: "Burak" },
   ZEYN2025: { className: "ornament-gold", name: "Zeynep" },
@@ -36,8 +39,14 @@ const codeMap = {
   IPEK2025: { className: "ornament-silver", name: "İpek" }
 };
 
-// Kilidi açma butonu
-unlockBtn.addEventListener("click", () => {
+/* ========== KİLİT AÇMA ========== */
+
+unlockBtn.addEventListener("click", handleUnlock);
+codeInput.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") handleUnlock();
+});
+
+function handleUnlock() {
   const rawCode = codeInput.value.trim().toUpperCase();
 
   if (!rawCode) {
@@ -50,7 +59,7 @@ unlockBtn.addEventListener("click", () => {
     return;
   }
 
-  // DOĞRU KOD
+  // Doğru kod
   currentPerson = codeMap[rawCode];
   unlocked = true;
   step = 0;
@@ -66,26 +75,19 @@ unlockBtn.addEventListener("click", () => {
     instruction.textContent =
       "Hoş geldin " +
       currentPerson.name +
-      "! İlk tıklamada müzik başlayacak.";
+      "! İlk dokunuşta müzik başlayacak.";
     giftText.textContent =
       "Müzik ve süs için ekrana tıklamayı kullan, sonra hediye kutusunu açabilirsin.";
-  }, 400);
-});
+  }, 350);
+}
 
-// Enter ile kilidi aç
-codeInput.addEventListener("keyup", (e) => {
-  if (e.key === "Enter") {
-    unlockBtn.click();
-  }
-});
-
-// Yanlış kod için patlama + sarsılma
 function showWrongCode(message) {
   lockMessage.textContent = message;
 
+  // Animasyonu resetlemek için önce sınıfları kaldır
   lockBox.classList.remove("shake", "flash-red");
   boomCircle.classList.remove("explode");
-  void lockBox.offsetWidth; // animasyonu resetlemek için
+  void lockBox.offsetWidth;
 
   lockBox.classList.add("shake", "flash-red");
   boomCircle.classList.add("explode");
@@ -94,35 +96,51 @@ function showWrongCode(message) {
   codeInput.focus();
 }
 
-// Sayfaya genel tıklama (sadece kilit açıldıktan sonra)
+/* ========== SAYFA GENEL TIKLAMA (MÜZİK + SÜS) ========== */
+
 document.body.addEventListener("click", (e) => {
+  // Kilit açılmadan hiçbir şey yapma
   if (!unlocked) return;
 
-  // Hediye kutusuna özel handler var, burada sayma
+  // Hediye kutusuna tıklama burada değil, kendi handler'ı var
   if (e.target === giftBox || giftBox.contains(e.target)) return;
 
-  if (step === 0) {
+  // step 0 veya 1 → müzik denemesi
+  if (step === 0 || step === 1) {
     startMusic();
-  } else if (step === 2) {
+    return;
+  }
+
+  // step 2 → süs tak
+  if (step === 2) {
     attachPersonOrnament();
   }
 });
 
+/* ========== MÜZİK BAŞLATMA ========== */
+
 function startMusic() {
+  if (!audio) return;
+
   audio
     .play()
     .then(() => {
+      // Müzik başardı
       step = 2;
       instruction.textContent =
-        "Müzik başladı. Şimdi ağaca senin için hazırlanmış süsü takmak için tekrar tıkla.";
+        "Müzik başladı! Şimdi ağaca senin süsünü takmak için tekrar dokun.";
     })
     .catch(() => {
+      // Tarayıcı bu denemeyi engelledi
+      // step'i 1'e çekip kullanıcıya tekrar denemesini söylüyoruz
+      step = 1;
       instruction.textContent =
         "Tarayıcı müziği engelledi. Müzik için ekrana tekrar dokunmayı dene.";
     });
 }
 
-// KODA GÖRE SABİT SÜS
+/* ========== SÜS TAKMA ========== */
+
 function attachPersonOrnament() {
   if (!currentPerson) {
     ornamentText.textContent =
@@ -132,12 +150,15 @@ function attachPersonOrnament() {
 
   step = 3;
 
+  // Eski sınıfları sıfırla, sadece süs sınıflarını ekle
   ornament.className = "ornament";
   ornament.classList.add(currentPerson.className);
   ornament.classList.remove("hidden");
 
   ornamentText.textContent =
-    "Bu süs, " + currentPerson.name + " için hazırlanmış özel yılbaşı sürprizi.";
+    "Bu süs, " +
+    currentPerson.name +
+    " için hazırlanmış özel yılbaşı sürprizi.";
 
   giftBox.classList.add("active");
   giftText.textContent =
@@ -147,7 +168,8 @@ function attachPersonOrnament() {
   instruction.textContent = "Hediye kutusuna tıkla ve hediyeni aç.";
 }
 
-// Hediye kutusuna tıklama -> sadece step >= 3 iken geçiş
+/* ========== HEDİYE KUTUSU ========== */
+
 giftBox.addEventListener("click", (e) => {
   e.stopPropagation();
 
