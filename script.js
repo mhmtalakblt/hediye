@@ -1,8 +1,8 @@
 // Adım mantığı:
 //
 // step = 0 → kilit açıldı, müzik için ilk deneme yapılmadı
-// step = 1 → tarayıcı müziği engelledi, tekrar deneme gerekiyor
-// step = 2 → müzik oynuyor, bir sonraki tık süs takacak
+// step = 1 → tarayıcı müziği engelledi, tekrar deneme gerekiyor (artık sadece bilgi)
+// step = 2 → müzik oynuyor / oynayamasa da "başlatıldı" sayıyoruz, bir sonraki tık süs takacak
 // step = 3 → süs takıldı, hediye kutusu açılabilir
 
 let step = 0;
@@ -27,7 +27,6 @@ const unlockBtn = document.getElementById("unlock-btn");
 const boomCircle = document.getElementById("boom-circle");
 
 // KOD -> KİŞİ HARİTASI
-// Buradaki kod ve isimleri kendine göre düzenleyebilirsin
 const codeMap = {
   BURA2025: { className: "ornament-red", name: "Burak" },
   ZEYN2025: { className: "ornament-gold", name: "Zeynep" },
@@ -117,25 +116,33 @@ document.body.addEventListener("click", (e) => {
   }
 });
 
-/* ========== MÜZİK BAŞLATMA ========== */
+/* ========== MÜZİK BAŞLATMA (DÜZELTİLMİŞ) ========== */
 
 function startMusic() {
-  if (!audio) return;
+  // Audio elementi yoksa bile akışı durdurmayalım
+  if (!audio) {
+    step = 2;
+    instruction.textContent =
+      "Müzik başlatılamadı ama sorun değil. Şimdi tekrar dokun, süsünü takalım.";
+    return;
+  }
 
   audio
     .play()
     .then(() => {
-      // Müzik başardı
+      // Müzik başarıyla başladı
       step = 2;
       instruction.textContent =
         "Müzik başladı! Şimdi ağaca senin süsünü takmak için tekrar dokun.";
     })
-    .catch(() => {
-      // Tarayıcı bu denemeyi engelledi
-      // step'i 1'e çekip kullanıcıya tekrar denemesini söylüyoruz
-      step = 1;
+    .catch((err) => {
+      // Tarayıcı veya dosya hatası
+      console.warn("Müzik çalınamadı:", err);
+
+      // ÖNEMLİ: Akışı kilitlememek için yine step = 2 yapıyoruz
+      step = 2;
       instruction.textContent =
-        "Tarayıcı müziği engelledi. Müzik için ekrana tekrar dokunmayı dene.";
+        "Tarayıcı müziği engelledi ama sorun değil. Şimdi tekrar dokun, süsünü takalım.";
     });
 }
 
