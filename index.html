@@ -1,121 +1,206 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <title>Yılbaşı Ağacı</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <title>Giriş</title>
+    <style>
+        body {
+            background: #0b1020;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 80px;
+        }
+        .card {
+            background: #151a30;
+            border-radius: 14px;
+            padding: 24px 32px;
+            display: inline-block;
+            min-width: 320px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        input, button, select {
+            margin-top: 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+        }
+        button {
+            background: #ffb347;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .hidden { display: none; }
+        .error { color: #ff6b6b; margin-top: 8px; }
+        .success { color: #4cd964; margin-top: 8px; }
+        .locked { color: #ff3b30; font-weight: bold; margin-top: 12px; }
+        .question {
+            margin-top: 10px;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
-<audio
-  id="bg-music"
-  src="assets/music.mp3"
-  preload="auto"
-></audio>
 
-  <!-- KİLİT EKRANI -->
- <div id="lock-screen" class="lock-screen">
-  <div id="lock-box" class="lock-box">
-    <div class="lock-icon">🔒</div>
-    <h2>Yılbaşı Hediyesi Kilidi</h2>
-    <p id="lock-message">Kendi yılbaşı kodunu gir.</p>
-
-    <input
-      id="code-input"
-      type="text"
-      placeholder="Örn: BURA2025"
-      autocomplete="off"
-    />
-
-    <button id="unlock-btn">Kilidi Aç</button>
-
-    <p class="lock-hint">
-      Kodu bilmiyorsan bu sayfa senin için değil demektir 🙂
-    </p>
-
-    <!-- MİNİ QUIZ PANELİ -->
-    <div id="quiz-panel" class="quiz-panel hidden">
-      <h3>Mini Yılbaşı Quiz</h3>
-      <p class="quiz-info">
-        3 sorudan 3’ünü de doğru bilirsen 1 kez daha şifre deneme hakkı kazanacaksın.
-      </p>
-
-      <div class="quiz-question" data-answer="c">
-        <p>1)Üniversitedeki kedinin adı ne?</p>
-        <label><input type="radio" name="q1" value="a" /> Şimşek</label>
-        <label><input type="radio" name="q1" value="b" /> Gölge</label>
-        <label><input type="radio" name="q1" value="c" /> Gece</label>
-      </div>
-
-      <div class="quiz-question" data-answer="c">
-        <p>2) ?</p>
-        <label><input type="radio" name="q2" value="a" /> Daha fazla ödev</label>
-        <label><input type="radio" name="q2" value="b" /> Sürekli sınav</label>
-        <label><input type="radio" name="q2" value="c" /> Mutluluk ve sağlık</label>
-      </div>
-
-      <div class="quiz-question" data-answer="a">
-        <p>3) Kar yağınca hangisi yapılır?</p>
-        <label><input type="radio" name="q3" value="a" /> Kardan adam</label>
-        <label><input type="radio" name="q3" value="b" /> Kumdan kale</label>
-        <label><input type="radio" name="q3" value="c" /> Dondurma tezgâhı</label>
-      </div>
-
-      <button id="quiz-submit" type="button">Quiz’i Bitir</button>
-      <p id="quiz-message" class="quiz-message"></p>
+<div class="card">
+    <h2>Gizli Sayfaya Giriş</h2>
+    <p>Kodu doğru girersen ağaçlı sayfaya geçeceksin.</p>
+    
+    <div id="code-area">
+        <input type="password" id="codeInput" placeholder="Kodu yaz" maxlength="10">
+        <br>
+        <button id="codeBtn">Gönder</button>
+        <div id="info" class="error"></div>
     </div>
 
-    <div id="boom-circle" class="boom-circle"></div>
-  </div>
+    <!-- Mini Quiz (başta gizli) -->
+    <div id="quiz-area" class="hidden">
+        <h3>Mini Quiz</h3>
+        <p>3 sorudan 3'ünü de bilirsen 1 hak daha alacaksın.</p>
+
+        <div class="question">
+            <div>1) Python'da ekrana yazdırmak için hangi komut kullanılır?</div>
+            <select id="q1">
+                <option value="">Seç...</option>
+                <option value="a">echo()</option>
+                <option value="b">print()</option>
+                <option value="c">console.log()</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <div>2) HTML'de link vermek için hangi etiket kullanılır?</div>
+            <select id="q2">
+                <option value="">Seç...</option>
+                <option value="a">&lt;div&gt;</option>
+                <option value="b">&lt;a&gt;</option>
+                <option value="c">&lt;span&gt;</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <div>3) JavaScript'te eşittir karşılaştırması için hangisi daha güvenlidir?</div>
+            <select id="q3">
+                <option value="">Seç...</option>
+                <option value="a">==</option>
+                <option value="b">===</option>
+                <option value="c">=</option>
+            </select>
+        </div>
+
+        <button id="quizBtn">Quiz'i Bitir</button>
+        <div id="quizInfo" class="error"></div>
+    </div>
+
+    <div id="lockedMsg" class="locked hidden">
+        Sistem kalıcı olarak kilitlendi.
+    </div>
 </div>
 
-      <!-- Patlama efekti -->
-      <div id="boom-circle" class="boom-circle"></div>
-    </div>
-  </div>
+<script>
+    const CORRECT_CODE = "2026"; // BURAYA İSTEDİĞİN KODU YAZ
+    let attempts = 0;
+    let extraChance = false;
+    let locked = false;
 
-  <!-- ASIL İÇERİK (kilit açılana kadar gizli) -->
-  <div id="main-content" class="page hidden">
-    <div class="info-panel">
-      <h1>🎄 Mutlu Yıllar 2026 🎄</h1>
-      <p id="instruction">
-        Hoş geldin! Kilidi açtıktan sonra tıklayarak müziği başlatabilirsin.
-      </p>
-    </div>
+    const codeInput = document.getElementById("codeInput");
+    const codeBtn = document.getElementById("codeBtn");
+    const info = document.getElementById("info");
 
-<div class="tree-wrapper">
-  <div class="tree tree-3d">
-    <div class="tree-layer layer0"></div>
-    <div class="tree-layer layer1"></div>
-    <div class="tree-layer layer2"></div>
-    <div class="tree-layer layer3"></div>
-    <div class="tree-trunk"></div>
+    const quizArea = document.getElementById("quiz-area");
+    const quizBtn = document.getElementById("quizBtn");
+    const quizInfo = document.getElementById("quizInfo");
 
-    <div id="ornament" class="ornament hidden"></div>
-  </div>
-</div>
-          <!-- Süs burada belirecek -->
-          <div id="ornament" class="ornament hidden"></div>
-        </div>
-      </div>
+    const lockedMsg = document.getElementById("lockedMsg");
+    const codeArea = document.getElementById("code-area");
 
-      <div class="gift-zone">
-        <div id="giftBox" class="gift-box">
-          <div class="gift-lid"></div>
-          <div class="gift-body"></div>
-          <div class="gift-ribbon-vertical"></div>
-          <div class="gift-ribbon-horizontal"></div>
-        </div>
-        <p id="gift-text" class="gift-text">
-          Önce kilidi aç, müziği başlat ve ağaca süsü tak.
-        </p>
-      </div>
+    codeBtn.addEventListener("click", checkCode);
 
-      <p id="ornament-text" class="ornament-text"></p>
-    </div>
-  </div>
-  <audio id="test-audio" src="assets/music.mp3" controls></audio>
+    function checkCode() {
+        if (locked) return;
 
-  <script src="script.js"></script>
+        const val = codeInput.value.trim();
+        if (!val) {
+            info.textContent = "Kod boş olamaz.";
+            return;
+        }
+
+        if (val === CORRECT_CODE) {
+            info.className = "success";
+            info.textContent = "Doğru! Ağaçlı sayfaya geçiliyor...";
+            setTimeout(() => {
+                window.location.href = "agac.html";
+            }, 700);
+        } else {
+            attempts++;
+            info.className = "error";
+            
+            if (attempts < 3 || (extraChance && attempts < 4)) {
+                const kalan = (extraChance ? 4 : 3) - attempts;
+                info.textContent = "Yanlış kod. Kalan hak: " + kalan;
+            }
+
+            // İlk 3 hak bittiyse ve extraChance yoksa → quiz aç
+            if (attempts >= 3 && !extraChance) {
+                info.textContent = "Yanlış kod. Hakların bitti, mini quiz açıldı.";
+                showQuiz();
+            }
+
+            // Extra hak da kullanıldıysa → kilitle
+            if (extraChance && attempts >= 4) {
+                lockSystem();
+            }
+        }
+    }
+
+    function showQuiz() {
+        quizArea.classList.remove("hidden");
+        // Kod alanını bırakıyoruz ama deneme yapmaması için butonu kilitleyebiliriz:
+        codeBtn.disabled = true;
+    }
+
+    quizBtn.addEventListener("click", () => {
+        if (locked) return;
+
+        const q1 = document.getElementById("q1").value;
+        const q2 = document.getElementById("q2").value;
+        const q3 = document.getElementById("q3").value;
+
+        if (!q1 || !q2 || !q3) {
+            quizInfo.textContent = "Tüm soruları işaretle.";
+            return;
+        }
+
+        const correct = (q1 === "b" && q2 === "b" && q3 === "b");
+
+        if (correct) {
+            extraChance = true;
+            quizInfo.className = "success";
+            quizInfo.textContent = "Tebrikler! 1 tane ekstra kod deneme hakkı kazandın.";
+            // Kod butonunu tekrar aç
+            codeBtn.disabled = false;
+            info.className = "success";
+            info.textContent = "Son hakkını kullanabilirsin. (Toplam 4. deneme)";
+        } else {
+            quizInfo.className = "error";
+            quizInfo.textContent = "Yanlış cevaplar var. Tüm hakların bitti, sistem kilitlendi.";
+            lockSystem();
+        }
+    });
+
+    function lockSystem() {
+        locked = true;
+        codeBtn.disabled = true;
+        codeInput.disabled = true;
+        quizBtn.disabled = true;
+        lockedMsg.classList.remove("hidden");
+    }
+</script>
+
 </body>
 </html>
