@@ -573,102 +573,135 @@ body::after {
   }
 }
 /* ===========================
-   KARADAN ADAM
+   KARDAN ADAM – 3 TOP, SALLANAN KOL, HAREKETLİ GÖZ
 =========================== */
 
 .snowman {
-  margin-top: 30px;
+  margin-top: 32px;
   display: flex;
   justify-content: center;
   animation: float-snowman 4s ease-in-out infinite;
 }
 
 @keyframes float-snowman {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-6px); }
   100% { transform: translateY(0); }
 }
 
 .snowman-body {
   position: relative;
-  width: 120px;
-  height: 170px;
+  width: 130px;
+  height: 190px;
 }
 
-.snowman-head {
+/* 3 yuvarlak kar topu */
+.snow-ball {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, #ffffff, #e5e7eb);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.5);
+}
+
+.snow-ball.bottom {
+  width: 90px;
+  height: 90px;
+  bottom: 0;
+}
+
+.snow-ball.middle {
   width: 70px;
   height: 70px;
-  background: white;
-  border-radius: 50%;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  box-shadow: 0 0 12px rgba(255,255,255,0.4);
+  bottom: 65px;
 }
 
-.snowman-face .eye {
+.snow-ball.head {
+  width: 56px;
+  height: 56px;
+  bottom: 120px;
+}
+
+/* Yüz */
+.snow-ball.head .eye {
   width: 8px;
   height: 8px;
-  background: black;
+  background: #000;
   border-radius: 50%;
   position: absolute;
-  top: 25px;
+  top: 18px;
+  animation: eye-look 2.6s ease-in-out infinite;
 }
 
-.snowman-face .eye.left { left: 40px; }
-.snowman-face .eye.right { left: 52px; }
-
-.snowman-face .nose {
-  width: 14px;
-  height: 14px;
-  background: orange;
-  border-radius: 50%;
-  position: absolute;
-  left: 46px;
-  top: 38px;
+/* Gözler hafif sağa–sola bakıyor */
+@keyframes eye-look {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(2px); }
+  50%  { transform: translateX(-1px); }
+  75%  { transform: translateX(1px); }
+  100% { transform: translateX(0); }
 }
 
-.snowman-belly {
-  width: 100px;
-  height: 100px;
-  background: white;
-  border-radius: 50%;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  box-shadow: 0 0 18px rgba(255,255,255,0.4);
+.snow-ball.head .eye.left {
+  left: 16px;
 }
 
-.snowman-buttons .btn {
-  width: 10px;
-  height: 10px;
-  background: black;
+.snow-ball.head .eye.right {
+  right: 16px;
+}
+
+.snow-ball.head .nose {
+  width: 16px;
+  height: 16px;
+  background: #fb923c;
   border-radius: 50%;
   position: absolute;
   left: 50%;
+  top: 28px;
   transform: translateX(-50%);
 }
 
-.snowman-buttons .btn:nth-child(1) { top: 80px; }
-.snowman-buttons .btn:nth-child(2) { top: 100px; }
-.snowman-buttons .btn:nth-child(3) { top: 120px; }
+/* Düğmeler */
+.buttons .btn {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  background: #000;
+  border-radius: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
-.snowman-arms .arm {
-  width: 40px;
+.buttons .b1 { top: 105px; }
+.buttons .b2 { top: 125px; }
+.buttons .b3 { top: 145px; }
+
+/* Kollar */
+.arms .arm {
+  position: absolute;
+  width: 46px;
   height: 4px;
   background: #8b5a2b;
-  position: absolute;
-  top: 70px;
+  top: 105px; /* orta top hizası */
 }
 
+/* Sol kol sabit */
 .arm.left {
-  left: -20px;
-  transform: rotate(-20deg);
+  left: 10px;
+  transform-origin: left center;
+  transform: rotate(-15deg);
 }
 
+/* Sağ kol sallanıyor */
 .arm.right {
-  right: -20px;
-  transform: rotate(20deg);
+  right: 10px;
+  transform-origin: right center;
+  animation: arm-wave 1.4s ease-in-out infinite;
+}
+
+@keyframes arm-wave {
+  0%   { transform: rotate(18deg); }
+  50%  { transform: rotate(-5deg); }
+  100% { transform: rotate(18deg); }
 }
