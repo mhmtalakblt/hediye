@@ -56,7 +56,17 @@ document.addEventListener("DOMContentLoaded", () => {
     MONEY: "money.html",
     KARAAMBAR: "karaambar.html"
   };
-
+// İP UCU HARİTASI (kişinin sayfasında görünecek)
+const hintMap = {
+  Burak: ["DOLANDIRICI", "KARAAMBAR"],
+  Zeynep: ["DOLANDIRICI", "CIGARA"],
+  Ayşenur: ["DOLANDIRICI", "CIGARA"],
+  Sanem: ["DOLANDIRICI", "KARAAMBAR"],
+  Yusuf: ["DOLANDIRICI", "KARAAMBAR"],
+  Esra: ["MONEY"],
+  İpek: ["MONEY"],
+  Hira: ["MONEY"]
+};
   /* ========== KİLİT AÇMA ========== */
 
   if (unlockBtn && codeInput) {
@@ -238,6 +248,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (step === 2) {
       attachPersonOrnament();
+      showRandomHint();
+
     }
   });
 
@@ -327,3 +339,29 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+function showRandomHint() {
+  const hintBox = document.getElementById("hint-box");
+  if (!hintBox || !currentPerson) return;
+
+  // Bu kişiye ait ipuçları
+  const hints = hintMap[currentPerson.name];
+  if (!hints) return;
+
+  // Random bir ipucu seç
+  const text = hints[Math.floor(Math.random() * hints.length)];
+
+  hintBox.textContent = "İpucu: " + text;
+
+  // Ekranda random pozisyon
+  const randX = Math.random() * (window.innerWidth - 150);
+  const randY = Math.random() * (window.innerHeight - 150);
+
+  hintBox.style.left = randX + "px";
+  hintBox.style.top = randY + "px";
+
+  // Göster
+  hintBox.classList.remove("hidden");
+  hintBox.classList.add("show");
+}
+
