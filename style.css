@@ -1047,3 +1047,193 @@ body::after {
     width: 190px;
   }
 }
+/* ============= KARAAMBAR GİZLİ SAYFA ============= */
+
+.kara-page {
+  background: radial-gradient(circle at top, #020617, #000000);
+}
+
+.kara-wrapper {
+  max-width: 640px;
+  text-align: left;
+}
+
+.kara-wrapper h1 {
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.kara-subtitle {
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: #e5e7eb;
+}
+
+/* İyi dilek kutuları */
+.kara-wishes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.kara-wishes .wish-card h2 {
+  color: #facc15;
+}
+
+/* Foto alanı */
+.kara-photo-area {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.kara-photo {
+  max-width: 100%;
+  border-radius: 14px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.7);
+  object-fit: cover;
+}
+
+/* Kamyon sahnesi */
+.truck-scene {
+  position: relative;
+  margin: 6px auto 12px;
+  width: 260px;
+  height: 120px;
+}
+
+/* Yol */
+.road {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  height: 18px;
+  background: linear-gradient(to right, #020617, #1f2937);
+  border-radius: 999px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.8);
+}
+
+/* Kamyon gövdesi */
+.truck {
+  position: absolute;
+  bottom: 24px;
+  left: 18px;
+  width: 210px;
+  height: 60px;
+}
+
+/* Kasa */
+.truck-body {
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 130px;
+  height: 44px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #111827, #0f172a);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+  border: 2px solid #facc15;
+}
+
+.truck-text {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #facc15;
+  text-align: center;
+  margin-top: 13px;
+}
+
+/* Kabin */
+.truck-cabin {
+  position: absolute;
+  right: 0;
+  top: 10px;
+  width: 60px;
+  height: 40px;
+  background: linear-gradient(135deg, #1f2937, #020617);
+  border-radius: 8px 10px 6px 4px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.8);
+}
+
+.cabin-window {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 26px;
+  height: 16px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #bae6fd, #38bdf8);
+}
+
+/* Farlar */
+.truck-lights {
+  position: absolute;
+  right: -6px;
+  bottom: 10px;
+  display: flex;
+  gap: 4px;
+}
+
+.headlight {
+  width: 10px;
+  height: 6px;
+  border-radius: 6px;
+  background: #fbbf24;
+  box-shadow: 0 0 0px rgba(251, 191, 36, 0.0);
+  animation: headlightBlink 1.2s ease-in-out infinite;
+}
+
+.headlight.right {
+  animation-delay: 0.4s;
+}
+
+@keyframes headlightBlink {
+  0% {
+    box-shadow: 0 0 4px rgba(251, 191, 36, 0.3);
+    background: #facc15;
+  }
+  40% {
+    box-shadow: 0 0 18px rgba(251, 191, 36, 0.9);
+    background: #feead3;
+  }
+  100% {
+    box-shadow: 0 0 4px rgba(251, 191, 36, 0.3);
+    background: #facc15;
+  }
+}
+
+/* Tekerlekler */
+.truck-wheels {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4px 0 6px;
+}
+
+.wheel {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #4b5563, #020617);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.9);
+  position: relative;
+}
+
+.wheel::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #9ca3af, #111827);
+}
+
+.kara-back {
+  display: block;
+  margin-top: 18px;
+  text-align: center;
+}
