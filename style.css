@@ -1237,3 +1237,132 @@ body::after {
   margin-top: 18px;
   text-align: center;
 }
+/* ============= MONEY GİZLİ SAYFA ============= */
+
+.money-page {
+  background: radial-gradient(circle at top, #022c22, #020617);
+  overflow: hidden;
+}
+
+.money-wrapper {
+  max-width: 640px;
+  text-align: left;
+  position: relative;
+  z-index: 2;
+}
+
+.money-wrapper h1 {
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.money-subtitle {
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: #bbf7d0;
+}
+
+/* İyi dilek kutuları */
+.money-wishes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.money-wishes .wish-card h2 {
+  color: #4ade80;
+}
+
+/* Foto alanı */
+.money-photo-area {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.money-photo {
+  max-width: 100%;
+  border-radius: 14px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.7);
+  object-fit: cover;
+}
+
+.money-back {
+  display: block;
+  margin-top: 18px;
+  text-align: center;
+}
+
+/* PARA YAĞMURU */
+
+.money-rain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.money-rain .bill {
+  position: absolute;
+  top: -80px;
+  width: 70px;
+  height: 32px;
+  border-radius: 4px;
+  background:
+    linear-gradient(135deg, #16a34a, #22c55e);
+  box-shadow:
+    0 0 6px rgba(34, 197, 94, 0.7),
+    inset 0 0 0 2px rgba(5, 46, 22, 0.4);
+  opacity: 0.9;
+  animation: moneyFall 6s linear infinite;
+}
+
+/* Banknotların ortasına basit bir desen */
+.money-rain .bill::before {
+  content: "$";
+  position: absolute;
+  inset: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 118, 110, 0.8);
+  color: #ecfdf5;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Farklı kolonlar ve hızlar */
+.money-rain .b1 { left: 5%;  animation-duration: 6s;  animation-delay: 0s; }
+.money-rain .b2 { left: 20%; animation-duration: 7s;  animation-delay: 0.8s; }
+.money-rain .b3 { left: 35%; animation-duration: 6.5s;animation-delay: 1.5s; }
+.money-rain .b4 { left: 50%; animation-duration: 7.2s;animation-delay: 0.4s; }
+.money-rain .b5 { left: 65%; animation-duration: 6.8s;animation-delay: 1.1s; }
+.money-rain .b6 { left: 78%; animation-duration: 7.4s;animation-delay: 2.0s; }
+.money-rain .b7 { left: 88%; animation-duration: 6.2s;animation-delay: 2.6s; }
+.money-rain .b8 { left: 12%; animation-duration: 7.6s;animation-delay: 3.1s; }
+
+@keyframes moneyFall {
+  0% {
+    transform: translate3d(0, 0, 0) rotateZ(0deg) rotateY(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate3d(20px, 50vh, 0) rotateZ(15deg) rotateY(45deg);
+  }
+  100% {
+    transform: translate3d(-20px, 110vh, 0) rotateZ(-10deg) rotateY(90deg);
+    opacity: 0;
+  }
+}
+
+/* Mobil */
+@media (max-width: 600px) {
+  .money-wrapper {
+    max-width: 100%;
+  }
+}
