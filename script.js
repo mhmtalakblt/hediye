@@ -49,24 +49,27 @@ document.addEventListener("DOMContentLoaded", () => {
     AYSE2025: { className: "ornament-teal", name: "Ayşenur" },
     IPEK2025: { className: "ornament-silver", name: "İpek" }
   };
-   // GİZLİ KOD -> SAYFA HARİTASI
+
+  // GİZLİ KOD -> SAYFA HARİTASI
   const secretMap = {
     DOLANDIRICI: "dolandirici.html",
     CIGARA: "cigara.html",
     MONEY: "money.html",
     KARAAMBAR: "karaambar.html"
   };
-// İP UCU HARİTASI (kişinin sayfasında görünecek)
-const hintMap = {
-  Burak: ["DOLANDIRICI", "KARAAMBAR"],
-  Zeynep: ["DOLANDIRICI", "CIGARA"],
-  Ayşenur: ["DOLANDIRICI", "CIGARA"],
-  Sanem: ["DOLANDIRICI", "KARAAMBAR"],
-  Yusuf: ["DOLANDIRICI", "KARAAMBAR"],
-  Esra: ["MONEY"],
-  İpek: ["MONEY"],
-  Hira: ["MONEY"]
-};
+
+  // Kişilere göre ipucu haritası
+  const hintMap = {
+    Burak: ["DOLANDIRICI", "KARAAMBAR"],
+    Zeynep: ["DOLANDIRICI", "CIGARA"],
+    Ayşenur: ["DOLANDIRICI", "CIGARA"],
+    Sanem: ["DOLANDIRICI", "KARAAMBAR"],
+    Yusufi: ["DOLANDIRICI", "KARAAMBAR"],
+    Esra: ["MONEY"],
+    İpek: ["MONEY"],
+    Hira: ["MONEY"]
+  };
+
   /* ========== KİLİT AÇMA ========== */
 
   if (unlockBtn && codeInput) {
@@ -87,14 +90,11 @@ const hintMap = {
 
     const rawCode = codeInput.value.trim().toUpperCase();
 
-
-
-      // ========== GİZLİ KODLAR (4 TANE) ==========
+    // GİZLİ KODLAR (4 TANE)
     if (secretMap[rawCode]) {
       window.location.href = secretMap[rawCode];
       return;
     }
-    // ==========================================
 
     if (!rawCode) {
       showWrongCode("Kod boş olamaz.");
@@ -134,7 +134,7 @@ const hintMap = {
       return;
     }
 
-    // Doğru kod
+    // Doğru kod (kişiye özel olanlar)
     currentPerson = codeMap[rawCode];
     unlocked = true;
     step = 0;
@@ -248,8 +248,6 @@ const hintMap = {
 
     if (step === 2) {
       attachPersonOrnament();
-      showRandomHint();
-
     }
   });
 
@@ -316,7 +314,37 @@ const hintMap = {
         currentPerson.name +
         "! Aşağıdaki hediye kutusuna tıklayıp sürprizini açabilirsin.";
     }
-    if (instruction) instruction.textContent = "Hediye kutusuna tıkla ve hediyeni aç.";
+    if (instruction) {
+      instruction.textContent = "Hediye kutusuna tıkla ve hediyeni aç.";
+    }
+
+    // Süs takıldığı an ipucu göster
+    showRandomHint();
+  }
+
+  /* ========== İPUCU GÖSTERME ========== */
+
+  function showRandomHint() {
+    const hintBox = document.getElementById("hint-box");
+    if (!hintBox || !currentPerson) return;
+
+    const hints = hintMap[currentPerson.name];
+    if (!hints || hints.length === 0) return;
+
+    const text = hints[Math.floor(Math.random() * hints.length)];
+    hintBox.textContent = "İpucu: " + text;
+
+    const randX = Math.random() * (window.innerWidth - 160);
+    const randY = Math.random() * (window.innerHeight - 160);
+
+    hintBox.style.left = randX + "px";
+    hintBox.style.top = randY + "px";
+
+    // Animasyonu resetleyip tekrar başlat
+    hintBox.classList.remove("show");
+    hintBox.classList.remove("hidden");
+    void hintBox.offsetWidth;
+    hintBox.classList.add("show");
   }
 
   /* ========== HEDİYE KUTUSU ========== */
@@ -339,29 +367,3 @@ const hintMap = {
     });
   }
 });
-
-function showRandomHint() {
-  const hintBox = document.getElementById("hint-box");
-  if (!hintBox || !currentPerson) return;
-
-  // Bu kişiye ait ipuçları
-  const hints = hintMap[currentPerson.name];
-  if (!hints) return;
-
-  // Random bir ipucu seç
-  const text = hints[Math.floor(Math.random() * hints.length)];
-
-  hintBox.textContent = "İpucu: " + text;
-
-  // Ekranda random pozisyon
-  const randX = Math.random() * (window.innerWidth - 150);
-  const randY = Math.random() * (window.innerHeight - 150);
-
-  hintBox.style.left = randX + "px";
-  hintBox.style.top = randY + "px";
-
-  // Göster
-  hintBox.classList.remove("hidden");
-  hintBox.classList.add("show");
-}
-
