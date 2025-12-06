@@ -65,7 +65,9 @@ document.addEventListener("DOMContentLoaded", () => {
     Ayşenur: ["1)WP GRUBU 2)...+ARA"],
     Sanem: ["1)3KIZ+3ERKEK 2)KARA"],
     Yusufi: ["1)PİKNİK 2)DERNEK"],
-
+    Esra: ["TL"],
+    İpek: ["DOLAR"],
+    Hira: ["EURO"]
   };
 
   /* ========== KİLİT AÇMA ========== */
