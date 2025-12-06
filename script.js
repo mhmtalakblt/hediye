@@ -283,3 +283,8 @@ if (giftBox) {
     window.location.href = "hediye.html";
   });
 }
+if (rawCode === "AEZAKMI") {
+  window.location.href = "secret.html";
+  return;
+}
+
