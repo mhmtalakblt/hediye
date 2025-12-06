@@ -60,11 +60,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Kişilere göre ipucu haritası
   const hintMap = {
-    Burak: ["2PSİKOLOG+4MÜHENDİS", "KAMYON"],
-    Zeynep: ["........ TAYFA", "CIG+..."],
-    Ayşenur: ["WP GRUBU", "...+ARA"],
-    Sanem: ["3KIZ+3ERKEK", "KARA"],
-    Yusufi: ["PİKNİK", "DERNEK"],
+    Burak: ["1)2PSİKOLOG+4MÜHENDİS 2)3ERKEK+1KIZ"],
+    Zeynep: ["1)........ TAYFA  2)CIG+..."],
+    Ayşenur: ["1)WP GRUBU 2)...+ARA"],
+    Sanem: ["1)3KIZ+3ERKEK 2)KARA"],
+    Yusufi: ["1)PİKNİK 2)DERNEK"],
     Esra: ["TL"],
     İpek: ["DOLAR"],
     Hira: ["EURO"]
