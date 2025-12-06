@@ -77,11 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const rawCode = codeInput.value.trim().toUpperCase();
 
-    // GİZLİ KOD
-    if (rawCode === "AEZAKMI") {
-      window.location.href = "secret.html";
-      return;
-    }
+
 
       // ========== GİZLİ KODLAR (4 TANE) ==========
     if (secretMap[rawCode]) {
