@@ -83,6 +83,13 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+      // ========== GİZLİ KODLAR (4 TANE) ==========
+    if (secretMap[rawCode]) {
+      window.location.href = secretMap[rawCode];
+      return;
+    }
+    // ==========================================
+
     if (!rawCode) {
       showWrongCode("Kod boş olamaz.");
       return;
