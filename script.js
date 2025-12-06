@@ -66,7 +66,11 @@ function handleUnlock() {
   }
 
   const rawCode = codeInput.value.trim().toUpperCase();
-
+// GİZLİ KOD (AEZAKMI)
+if (rawCode === "AEZAKMI") {
+  window.location.href = "secret.html";
+  return;
+}
   if (!rawCode) {
     showWrongCode("Kod boş olamaz.");
     return;
