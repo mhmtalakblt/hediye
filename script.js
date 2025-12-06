@@ -40,14 +40,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // KOD -> KİŞİ HARİTASI
   const codeMap = {
-    BURA2025: { className: "ornament-red", name: "Burak" },
-    ZEYN2025: { className: "ornament-gold", name: "Zeynep" },
-    ESRA2025: { className: "ornament-blue", name: "Esra" },
-    HIRA2025: { className: "ornament-green", name: "Hira" },
-    SANM2025: { className: "ornament-purple", name: "Sanem" },
-    YUSU2025: { className: "ornament-pink", name: "Yusufi" },
-    AYSE2025: { className: "ornament-teal", name: "Ayşenur" },
-    IPEK2025: { className: "ornament-silver", name: "İpek" }
+    MEGANESARISINE: { className: "ornament-red", name: "Burak" },
+    ZEYNEP26: { className: "ornament-gold", name: "Zeynep" },
+    ESRA2026: { className: "ornament-blue", name: "Esra" },
+    HIRA2026: { className: "ornament-green", name: "Hira" },
+    BECHOSENNDAYI: { className: "ornament-purple", name: "Sanem" },
+    YUSUFIM: { className: "ornament-pink", name: "Yusufi" },
+    AYSENUR26: { className: "ornament-teal", name: "Ayşenur" },
+    IPEK2026: { className: "ornament-silver", name: "İpek" }
   };
 
   // GİZLİ KOD -> SAYFA HARİTASI
