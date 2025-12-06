@@ -49,6 +49,13 @@ document.addEventListener("DOMContentLoaded", () => {
     AYSE2025: { className: "ornament-teal", name: "Ayşenur" },
     IPEK2025: { className: "ornament-silver", name: "İpek" }
   };
+   // GİZLİ KOD -> SAYFA HARİTASI
+  const secretMap = {
+    DOLANDIRICI: "dolandirici.html",
+    CIGARA: "cigara.html",
+    MONEY: "money.html",
+    KARAAMBAR: "karaambar.html"
+  };
 
   /* ========== KİLİT AÇMA ========== */
 
