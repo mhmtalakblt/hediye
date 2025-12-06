@@ -3,107 +3,147 @@
 <head>
   <meta charset="UTF-8" />
   <meta
-  name="viewport"
-  content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
-/>
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
+  />
   <title>Yeni Yıl Sürprizi</title>
-  <link rel="stylesheet" href="style.css?v=1">
+  <link rel="stylesheet" href="style.css?v=1" />
 </head>
 
 <body>
+  <!-- ========== KİLİT EKRANI ========== -->
+  <div id="lock-screen" class="lock-screen">
+    <div id="lock-box" class="lock-box">
+      <div class="lock-icon">🔒</div>
+      <h2>Yılbaşı Hediyesi Kilidi</h2>
+      <p id="lock-message">Kendi yılbaşı kodunu gir.</p>
 
-<!-- ========== KİLİT EKRANI ========== -->
-<div id="lock-screen" class="lock-screen">
-  <div id="lock-box" class="lock-box">
-    <div class="lock-icon">🔒</div>
-    <h2>Yılbaşı Hediyesi Kilidi</h2>
-    <p id="lock-message">Kendi yılbaşı kodunu gir.</p>
+      <input
+        id="code-input"
+        type="text"
+        placeholder="Örn: BURA2025"
+        autocomplete="off"
+      />
 
-    <input id="code-input" type="text" placeholder="Örn: AEZAKMI" autocomplete="off"/>
+      <button id="unlock-btn">Kilidi Aç</button>
 
-    <button id="unlock-btn">Kilidi Aç</button>
+      <p class="lock-hint">
+        Kodu bilmiyorsan bu sayfa sana ait değildir 🙂
+      </p>
 
-    <p class="lock-hint">Kodu bilmiyorsan bu sayfa sana ait değildir 🙂</p>
+      <!-- MİNİ QUIZ PANELİ -->
+      <div id="quiz-panel" class="quiz-panel hidden">
+        <h3>Mini Yılbaşı Quiz</h3>
+        <p class="quiz-info">
+          3 sorudan 3’ünü de doğru bilirsen 1 deneme hakkı daha kazanırsın.
+        </p>
 
-    <!-- MİNİ QUIZ PANELİ -->
-    <div id="quiz-panel" class="quiz-panel hidden">
-      <h3>Mini Yılbaşı Quiz</h3>
-      <p class="quiz-info">3 sorudan 3’ünü doğru bilirsen 1 deneme hakkı daha kazanırsın.</p>
+        <div class="quiz-question" data-answer="b">
+          <p>1) Yılbaşı ağacına ne asılır?</p>
+          <label>
+            <input type="radio" name="q1" value="a" />
+            Patates
+          </label>
+          <label>
+            <input type="radio" name="q1" value="b" />
+            Süs ve ışıklar
+          </label>
+          <label>
+            <input type="radio" name="q1" value="c" />
+            Ayakkabı
+          </label>
+        </div>
 
-      <div class="quiz-question" data-answer="c">
-        <p>1) Üniversitedeki kedinin ası?</p>
-        <label><input type="radio" name="q1" value="a"> Gölge</label>
-        <label><input type="radio" name="q1" value="b"> Şimşek</label>
-        <label><input type="radio" name="q1" value="c"> Gece</label>
+        <div class="quiz-question" data-answer="c">
+          <p>2) Yılbaşında arkadaşına ne dilersin?</p>
+          <label>
+            <input type="radio" name="q2" value="a" />
+            Daha fazla ödev
+          </label>
+          <label>
+            <input type="radio" name="q2" value="b" />
+            Sınav üstüne sınav
+          </label>
+          <label>
+            <input type="radio" name="q2" value="c" />
+            Mutluluk ve sağlık
+          </label>
+        </div>
+
+        <div class="quiz-question" data-answer="a">
+          <p>3) Kar yağınca ne yapılır?</p>
+          <label>
+            <input type="radio" name="q3" value="a" />
+            Kardan adam
+          </label>
+          <label>
+            <input type="radio" name="q3" value="b" />
+            Kumdan kale
+          </label>
+          <label>
+            <input type="radio" name="q3" value="c" />
+            Dondurma tezgâhı
+          </label>
+        </div>
+
+        <button id="quiz-submit" type="button">Quiz’i Bitir</button>
+        <p id="quiz-message" class="quiz-message"></p>
       </div>
 
-      <div class="quiz-question" data-answer="c">
-        <p>2) Yılbaşında arkadaşına ne dilersin?</p>
-        <label><input type="radio" name="q2" value="a"> Daha fazla ödev</label>
-        <label><input type="radio" name="q2" value="b"> Sınav üstüne sınav</label>
-        <label><input type="radio" name="q2" value="c"> Mutluluk ve sağlık</label>
-      </div>
+      <div id="boom-circle" class="boom-circle"></div>
+    </div>
+  </div>
 
-      <div class="quiz-question" data-answer="a">
-        <p>3) Kar yağınca ne yapılır?</p>
-        <label><input type="radio" name="q3" value="a"> Kardan adam</label>
-        <label><input type="radio" name="q3" value="b"> Kumdan kale</label>
-        <label><input type="radio" name="q3" value="c"> Dondurma tezgâhı</label>
-      </div>
+  <!-- ========== ANA İÇERİK ========== -->
+  <div id="main-content" class="page hidden">
+    <!-- MÜZİK (GitHub'a yüklediğin .bin dosya) -->
+    <audio
+      id="bg-music"
+      preload="auto"
+      src="assets/music.mp3.bin"
+    ></audio>
 
-      <button id="quiz-submit">Quiz’i Bitir</button>
-      <p id="quiz-message" class="quiz-message"></p>
+    <!-- SOL TARAF METİN PANELİ -->
+    <div class="info-panel">
+      <h1>🎄 Mutlu Yıllar 2026 🎄</h1>
+      <p id="instruction">Hazırsan başlayalım.</p>
+      <p id="ornament-text" class="ornament-text"></p>
     </div>
 
-    <div id="boom-circle" class="boom-circle"></div>
-  </div>
-</div>
+    <!-- SAĞ TARAF AĞAÇ + HEDİYE -->
+    <div class="tree-area">
+      <!-- AĞAÇ -->
+      <div class="tree-wrapper">
+        <div class="tree tree-3d">
+          <div class="tree-layer layer0"></div>
+          <div class="tree-layer layer1"></div>
+          <div class="tree-layer layer2"></div>
+          <div class="tree-layer layer3"></div>
 
+          <div class="tree-trunk"></div>
 
-<!-- ========== ANA İÇERİK ========== -->
-<div id="main-content" class="page hidden">
+          <div id="ornament" class="ornament hidden"></div>
+        </div>
+      </div>
 
-<audio id="bg-music" preload="auto" src="assets/music.mp3"></audio>
-
-
-
-  <div class="info-panel">
-    <h1>🎄 Mutlu Yıllar 2026 🎄</h1>
-    <p id="instruction">Hazırsan başlayalım!</p>
-    <p id="ornament-text"></p>
-  </div>
-<div id="hint-box" class="hidden"></div>
-  <div class="tree-area">
-
-    <!-- AĞAÇ -->
-    <div class="tree-wrapper">
-      <div class="tree tree-3d">
-        <div class="tree-layer layer0"></div>
-        <div class="tree-layer layer1"></div>
-        <div class="tree-layer layer2"></div>
-        <div class="tree-layer layer3"></div>
-
-        <div class="tree-trunk"></div>
-
-        <div id="ornament" class="ornament hidden"></div>
+      <!-- HEDİYE KUTUSU -->
+      <div class="gift-zone">
+        <div id="giftBox" class="gift-box">
+          <div class="gift-lid"></div>
+          <div class="gift-body"></div>
+          <div class="gift-ribbon-vertical"></div>
+          <div class="gift-ribbon-horizontal"></div>
+        </div>
+        <p id="gift-text" class="gift-text">
+          Müzik ve süs için ekrana tıkla.
+        </p>
       </div>
     </div>
-
-    <!-- HEDİYE KUTUSU -->
-    <div class="gift-zone">
-      <div id="giftBox" class="gift-box">
-        <div class="gift-lid"></div>
-        <div class="gift-body"></div>
-        <div class="gift-ribbon-vertical"></div>
-        <div class="gift-ribbon-horizontal"></div>
-      </div>
-      <p id="gift-text">Müzik ve süs için ekrana tıkla.</p>
-    </div>
-
   </div>
-</div>
-<div id="hint-box" class="hidden"></div>
 
-<script src="script.js?v=1"></script>
+  <!-- İPUCU KUTUSU (random konum + pırpır efekt) -->
+  <div id="hint-box" class="hidden"></div>
+
+  <script src="script.js?v=1"></script>
 </body>
 </html>
