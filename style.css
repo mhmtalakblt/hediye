@@ -1366,3 +1366,120 @@ body::after {
     max-width: 100%;
   }
 }
+/* ============= DOLANDIRICI GİZLİ SAYFA ============= */
+
+.dola-page {
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  overflow: hidden;
+}
+
+.dola-wrapper {
+  max-width: 640px;
+  text-align: left;
+  position: relative;
+  z-index: 2;
+}
+
+.dola-wrapper h1 {
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.dola-subtitle {
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: #e5e7eb;
+}
+
+.dola-wish {
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.7);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.dola-note {
+  font-size: 12px;
+  color: #9ca3af;
+  text-align: right;
+}
+
+.dola-back {
+  display: block;
+  margin-top: 18px;
+  text-align: center;
+}
+
+/* EĞLENCELİ ARKA PLAN (RENKLİ PARÇACIKLAR) */
+
+.fun-flow {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.fun-flow .piece {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  opacity: 0.85;
+  animation: funDrift 8s linear infinite;
+}
+
+/* Farklı renkler */
+.fun-flow .p1  { background: #f97316; }
+.fun-flow .p2  { background: #22c55e; }
+.fun-flow .p3  { background: #3b82f6; }
+.fun-flow .p4  { background: #eab308; }
+.fun-flow .p5  { background: #ec4899; }
+.fun-flow .p6  { background: #a855f7; }
+.fun-flow .p7  { background: #06b6d4; }
+.fun-flow .p8  { background: #facc15; }
+.fun-flow .p9  { background: #fb7185; }
+.fun-flow .p10 { background: #4ade80; }
+
+/* Başlangıç konumları */
+.fun-flow .p1  { left: 5%;  top: -40px;  animation-duration: 7s; animation-delay: 0s; }
+.fun-flow .p2  { left: 18%; top: -60px;  animation-duration: 8s; animation-delay: 0.8s; }
+.fun-flow .p3  { left: 30%; top: -50px;  animation-duration: 7.5s;animation-delay: 1.4s; }
+.fun-flow .p4  { left: 42%; top: -70px;  animation-duration: 8.2s;animation-delay: 0.3s; }
+.fun-flow .p5  { left: 55%; top: -55px;  animation-duration: 7.2s;animation-delay: 1.9s; }
+.fun-flow .p6  { left: 66%; top: -65px;  animation-duration: 8.5s;animation-delay: 1.1s; }
+.fun-flow .p7  { left: 76%; top: -45px;  animation-duration: 7.8s;animation-delay: 2.3s; }
+.fun-flow .p8  { left: 86%; top: -60px;  animation-duration: 8.1s;animation-delay: 0.6s; }
+.fun-flow .p9  { left: 12%; top: -50px;  animation-duration: 7.4s;animation-delay: 2.7s; }
+.fun-flow .p10 { left: 48%; top: -80px;  animation-duration: 8.7s;animation-delay: 3.1s; }
+
+@keyframes funDrift {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  40% {
+    transform: translate3d(20px, 40vh, 0) rotate(120deg);
+  }
+  70% {
+    transform: translate3d(-15px, 75vh, 0) rotate(240deg);
+  }
+  100% {
+    transform: translate3d(10px, 110vh, 0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Mobil */
+@media (max-width: 600px) {
+  .dola-wrapper {
+    max-width: 100%;
+  }
+}
