@@ -834,3 +834,216 @@ body::after {
   60%  { transform: scale(1.0); box-shadow: 0 0 8px #00ffe0; }
   100% { transform: scale(1.0); box-shadow: 0 0 0px transparent; }
 }
+/* ============= CIGARA GİZLİ SAYFA ============= */
+
+.cigara-page {
+  background: radial-gradient(circle at top, #050509, #000000);
+}
+
+.cigara-wrapper {
+  max-width: 600px;
+  text-align: left;
+}
+
+.cigara-wrapper h1 {
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.cigara-subtitle {
+  text-align: center;
+  margin-bottom: 18px;
+  color: #d1d5db;
+  font-size: 14px;
+}
+
+/* İyi dilek kutuları */
+.cigara-wishes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.wish-card {
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 10px;
+  padding: 10px 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  font-size: 13px;
+}
+
+.wish-card h2 {
+  font-size: 15px;
+  margin-bottom: 4px;
+  color: #f97316;
+}
+
+/* Foto alanı */
+.cigara-photo-area {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cigara-photo {
+  max-width: 100%;
+  border-radius: 14px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.7);
+  object-fit: cover;
+}
+
+.photo-note {
+  margin-top: 6px;
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+/* Sigara sahnesi */
+.cigara-scene {
+  position: relative;
+  margin: 10px auto 12px;
+  width: 220px;
+  height: 80px;
+}
+
+/* Masaya benzeyen zemin */
+.cigara-scene::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 18px;
+  background: linear-gradient(to right, #111827, #020617);
+  border-radius: 999px;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.8);
+}
+
+/* Sigara gövdesi */
+.cigarette {
+  position: absolute;
+  left: 20px;
+  bottom: 16px;
+  width: 140px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  transform: rotate(-5deg);
+}
+
+/* Filtresi */
+.cigarette .filter {
+  width: 26px;
+  height: 100%;
+  background: linear-gradient(135deg, #fbbf77, #b45309);
+  border-radius: 10px 0 0 10px;
+}
+
+/* Beyaz kağıt kısmı */
+.cigarette .paper {
+  flex: 1;
+  height: 100%;
+  background: linear-gradient(135deg, #f9fafb, #e5e7eb);
+}
+
+/* Yanan uç */
+.cigarette .ember {
+  width: 12px;
+  height: 100%;
+  border-radius: 0 10px 10px 0;
+  background: radial-gradient(circle at 30% 50%, #fef3c7, #f97316, #7f1d1d);
+  box-shadow:
+    0 0 8px rgba(248, 250, 252, 0.9),
+    0 0 22px rgba(248, 113, 113, 0.6);
+  animation: emberGlow 1.4s ease-in-out infinite;
+}
+
+@keyframes emberGlow {
+  0% {
+    box-shadow:
+      0 0 4px rgba(248, 250, 252, 0.3),
+      0 0 10px rgba(248, 113, 113, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 10px rgba(248, 250, 252, 1),
+      0 0 26px rgba(248, 113, 113, 0.85);
+  }
+  100% {
+    box-shadow:
+      0 0 4px rgba(248, 250, 252, 0.3),
+      0 0 10px rgba(248, 113, 113, 0.2);
+  }
+}
+
+/* Duman */
+.smoke {
+  position: absolute;
+  left: 130px; /* yanan uca yakın */
+  bottom: 38px;
+  width: 80px;
+  height: 80px;
+  pointer-events: none;
+}
+
+.smoke span {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(209, 213, 219, 0.85);
+  box-shadow: 0 0 12px rgba(209, 213, 219, 0.9);
+  transform: translateX(-50%);
+  opacity: 0;
+  animation: smokeRise 3.2s linear infinite;
+}
+
+/* Her dumana hafif random offset verelim */
+.smoke span:nth-child(1) {
+  animation-delay: 0s;
+}
+.smoke span:nth-child(2) {
+  animation-delay: 0.7s;
+}
+.smoke span:nth-child(3) {
+  animation-delay: 1.4s;
+}
+.smoke span:nth-child(4) {
+  animation-delay: 2.1s;
+}
+
+@keyframes smokeRise {
+  0% {
+    transform: translate(-50%, 0) scale(0.4);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  60% {
+    transform: translate(-60%, -40px) scale(0.9);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-40%, -70px) scale(1.1);
+    opacity: 0;
+  }
+}
+
+/* Geri dön linki biraz aşağıda dursun */
+.cigara-back {
+  display: block;
+  margin-top: 18px;
+  text-align: center;
+}
+
+/* Mobil düzenleme */
+@media (max-width: 600px) {
+  .cigara-wishes {
+    grid-template-columns: 1fr;
+  }
+
+  .cigara-scene {
+    width: 190px;
+  }
+}
