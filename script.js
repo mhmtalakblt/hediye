@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Kişilere göre ipucu haritası
   const hintMap = {
-    Burak: ["2PSİKOLOG+3MÜHENDİS", "KAMYON"],
+    Burak: ["2PSİKOLOG+4MÜHENDİS", "KAMYON"],
     Zeynep: ["........ TAYFA", "CIG+..."],
     Ayşenur: ["WP GRUBU", "...+ARA"],
     Sanem: ["3KIZ+3ERKEK", "KARA"],
