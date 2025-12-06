@@ -806,3 +806,31 @@ body::after {
 #hint-box.show {
   opacity: 1;
 }
+/* İPUCU KUTUSU */
+#hint-box {
+  position: absolute;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  z-index: 9999;
+  opacity: 0;
+  transform: scale(0.7);
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Gözüktüğünde devreye girecek */
+#hint-box.show {
+  opacity: 1;
+  animation: hintGlow 1.3s ease forwards;
+}
+
+/* Pırpır / ışıltı animasyonu */
+@keyframes hintGlow {
+  0%   { transform: scale(0.7); box-shadow: 0 0 0px #00ffea; }
+  30%  { transform: scale(1.15); box-shadow: 0 0 12px #00ffe0; }
+  60%  { transform: scale(1.0); box-shadow: 0 0 8px #00ffe0; }
+  100% { transform: scale(1.0); box-shadow: 0 0 0px transparent; }
+}
