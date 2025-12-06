@@ -60,14 +60,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Kişilere göre ipucu haritası
   const hintMap = {
-    Burak: ["DOLANDIRICI", "KARAAMBAR"],
-    Zeynep: ["DOLANDIRICI", "CIGARA"],
-    Ayşenur: ["DOLANDIRICI", "CIGARA"],
-    Sanem: ["DOLANDIRICI", "KARAAMBAR"],
-    Yusufi: ["DOLANDIRICI", "KARAAMBAR"],
-    Esra: ["MONEY"],
-    İpek: ["MONEY"],
-    Hira: ["MONEY"]
+    Burak: ["2PSİKOLOG+3MÜHENDİS", "KAMYON"],
+    Zeynep: ["........ TAYFA", "CIG+..."],
+    Ayşenur: ["WP GRUBU", "...+ARA"],
+    Sanem: ["3KIZ+3ERKEK", "KARA"],
+    Yusufi: ["PİKNİK", "DERNEK"],
+    Esra: ["TL"],
+    İpek: ["DOLAR"],
+    Hira: ["EURO"]
   };
 
   /* ========== KİLİT AÇMA ========== */
