@@ -367,3 +367,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+
+const miniGameBtn = document.getElementById("miniGameBtn");
+
+if (miniGameBtn) {
+  miniGameBtn.addEventListener("click", () => {
+    window.location.href = "game.html"; // mini oyunun dosya adı
+  });
+}
+
