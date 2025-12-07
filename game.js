@@ -6,7 +6,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyD-aoIn24PiUUNHpPqkmGGlzVSsbJFcsjQ",
   authDomain: "yilbasi-hediye.firebaseapp.com",
   projectId: "yilbasi-hediye",
-  storageBucket: "yilbasi-hediye.firebasestorage.app",
+  storageBucket: "yilbasi-hediye.firebasestorage.com",
   messagingSenderId: "856042975544",
   appId: "1:856042975544:web:b44f805d40e891d09511cd",
   measurementId: "G-H2KTTL1C09"
