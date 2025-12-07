@@ -30,7 +30,7 @@
       <input
         id="playerCode"
         type="text"
-        placeholder="Örn: MEGANESARISINE"
+        placeholder="Örn: STARDUCKS"
         autocomplete="off"
       />
 
@@ -44,7 +44,13 @@
       <button id="sendScoreBtn">Skoru Gönder</button>
       <p id="scoreMessage" class="quiz-message"></p>
     </div>
-
+<!-- MINI GAME ALANI -->
+<div id="gameArea">
+  <canvas id="gameCanvas" width="320" height="480"></canvas>
+  <button id="startGameBtn" class="mini-game-btn">Oyunu Başlat</button>
+  <p id="gameScoreDisplay">Skor: 0</p>
+  <p id="gameTimerDisplay">Süre: 20</p>
+</div>
     <!-- SKOR TABLOSU -->
     <div class="scoreboard-area">
       <h2>Skor Tablosu</h2>
@@ -56,7 +62,6 @@
           <tr>
             <th>Sıra</th>
             <th>İsim</th>
-            <th>Kod</th>
             <th>En Yüksek Skor</th>
           </tr>
         </thead>
