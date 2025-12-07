@@ -6,56 +6,46 @@
     name="viewport"
     content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
   />
-  <title>Mini Game | Skor Tablosu</title>
-  <link rel="stylesheet" href="style.css?v=3" />
+  <title>Yılbaşı Mini Game | Skor Tablosu</title>
+  <link rel="stylesheet" href="style.css?v=4" />
 </head>
 
 <body class="gift-page">
   <div class="gift-wrapper" style="max-width: 600px;">
-    <h1>🎮 Mini Game</h1>
-    <p style="margin-bottom: 8px;">
-      Oyun mantığını sonra ekleyeceğiz; şu an amaç Firebase’e skor gönderip
-      canlı skor tablosunu çalıştırmak.
+    <h1>🎮 Yılbaşı Mini Game</h1>
+    <p style="margin-bottom: 10px;">
+      Kodunu yaz, oyunu başlat, düşen yılbaşı süslerini hediye kutusuyla yakala.
+      Süre bitince skorun Firestore'a kaydedilecek ve tabloda görünecek.
     </p>
 
-    <!-- TEST FORMU (oyun hazır olana kadar) -->
-    <div class="mini-game-test">
-      <h2>Test Skor Gönder</h2>
-      <p class="mini-game-info">
-        Şimdilik buradan manuel skor gönder. Oyun bittiğinde JS içinden
-        bu fonksiyona çağrı yapacağız.
-      </p>
-
-      <label for="playerCode">Oyuncu kodu</label>
+    <!-- OYUN ALANI -->
+    <div id="gameArea">
+      <label for="gamePlayerCode" style="font-size:13px;">Kodun (örn: MEGANESARISINE):</label>
       <input
-        id="playerCode"
+        id="gamePlayerCode"
         type="text"
-        placeholder="Örn: STARDUCKS"
+        placeholder="Kodunu yaz"
         autocomplete="off"
+        style="width:100%;padding:7px 8px;border-radius:8px;border:1px solid #4b5563;background:#020617;color:#f9fafb;font-size:13px;margin:4px 0 8px;"
       />
 
-      <label for="playerScore">Skor</label>
-      <input
-        id="playerScore"
-        type="number"
-        placeholder="100"
-      />
+      <button id="startGameBtn" class="mini-game-btn" style="margin-bottom:10px;">
+        Oyunu Başlat
+      </button>
 
-      <button id="sendScoreBtn">Skoru Gönder</button>
-      <p id="scoreMessage" class="quiz-message"></p>
+      <div style="text-align:center;">
+        <canvas id="gameCanvas" width="320" height="480"></canvas>
+      </div>
+
+      <p id="gameScoreDisplay">Skor: 0</p>
+      <p id="gameTimerDisplay">Süre: 20</p>
     </div>
-<!-- MINI GAME ALANI -->
-<div id="gameArea">
-  <canvas id="gameCanvas" width="320" height="480"></canvas>
-  <button id="startGameBtn" class="mini-game-btn">Oyunu Başlat</button>
-  <p id="gameScoreDisplay">Skor: 0</p>
-  <p id="gameTimerDisplay">Süre: 20</p>
-</div>
+
     <!-- SKOR TABLOSU -->
-    <div class="scoreboard-area">
+    <div class="scoreboard-area" style="margin-top:20px;">
       <h2>Skor Tablosu</h2>
-      <p class="mini-game-info">
-        En yüksek skoruna göre sıralı, Firestore’dan canlı güncellenir.
+      <p style="font-size:13px;color:#9ca3af;margin-bottom:6px;">
+        En yüksek skoruna göre sıralı, Firestore'dan canlı güncellenir.
       </p>
       <table class="scoreboard-table">
         <thead>
@@ -81,6 +71,6 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
   <!-- Oyun + skor JS -->
-  <script src="game.js?v=2"></script>
+  <script src="game.js?v=3"></script>
 </body>
 </html>
