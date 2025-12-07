@@ -105,7 +105,6 @@ function listenScoreboard() {
 
         const tdRank = document.createElement("td");
         const tdName = document.createElement("td");
-        const tdCode = document.createElement("td");
         const tdScore = document.createElement("td");
 
         tdRank.textContent = rank;
@@ -115,7 +114,6 @@ function listenScoreboard() {
 
         tr.appendChild(tdRank);
         tr.appendChild(tdName);
-        tr.appendChild(tdCode);
         tr.appendChild(tdScore);
 
         scoreboardBody.appendChild(tr);
