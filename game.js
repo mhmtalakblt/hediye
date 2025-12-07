@@ -133,7 +133,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // ================== YILBAŞI OYUNU ==================
   if (!canvas || !ctx || !startGameBtn) return;
 
-  let basket = { x: 140, y: 440, width: 50, height: 22 };
+  let basket = {
+  x: (canvas.width - 50) / 2,
+  y: canvas.height - 40,  // her zaman alt kenarın biraz üstü
+  width: 50,
+  height: 22
+};
   let items = [];
   let score = 0;
   let timeLeft = 35;
@@ -217,7 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
     timeLeft = 35;
     items = [];
     basket.x = (canvas.width - basket.width) / 2;
-    basket.y = 440;
+    basket.y = canvas.height - 40;
     moveLeft = false;
     moveRight = false;
 
