@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ================== FIREBASE AYARLARI ==================
+  // ============= FIREBASE =============
   const firebaseConfig = {
     apiKey: "AIzaSyD-aoIn24PiUUNHpPqkmGGlzVSsbJFcsjQ",
     authDomain: "yilbasi-hediye.firebaseapp.com",
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
 
-  // ================== OYUNCU KOD -> İSİM HARİTASI ==================
+  // ============= KOD -> İSİM HARİTASI =============
   const playerMap = {
     MEGANESARISINE: "Burak",
     ZEYNEP26: "Zeynep",
@@ -22,11 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
     BECHOSENNDAYI: "Sanem",
     YUSUFIM: "Yusuf",
     AYSENUR26: "Ayşenur",
-    IPEK2026: "İpek",
-    ALİ: "Ali"
+    IPEK2026: "İpek"
+    // istersen buraya STARDUCKS vs ekleyebilirsin
   };
 
-  // ================== DOM ELEMANLARI ==================
+  // ============= DOM ELEMANLARI =============
   const scoreboardBody = document.getElementById("scoreboardBody");
   const startGameBtn = document.getElementById("startGameBtn");
   const scoreDisplay = document.getElementById("gameScoreDisplay");
@@ -38,14 +38,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const rulesModal = document.getElementById("rulesModal");
   const closeRulesBtn = document.getElementById("closeRulesBtn");
 
-  // ================== KURALLAR MODALI ==================
+  // Eğer canvas veya buton yoksa oyun kısmını atla
+  if (!canvas || !ctx || !startGameBtn) {
+    console.warn("Oyun elemanları bulunamadı.");
+  }
+
+  // ============= KURALLAR MODAL =============
   if (showRulesBtn && rulesModal && closeRulesBtn) {
     showRulesBtn.addEventListener("click", () => {
       rulesModal.classList.remove("hidden");
     });
+
     closeRulesBtn.addEventListener("click", () => {
       rulesModal.classList.add("hidden");
     });
+
     rulesModal.addEventListener("click", (e) => {
       if (e.target === rulesModal) {
         rulesModal.classList.add("hidden");
@@ -53,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ================== SKOR GÖNDERME ==================
+  // ============= SKOR KAYDETME =============
   async function submitScore(playerCode, score) {
     const code = (playerCode || "").trim().toUpperCase();
     const numericScore = Number(score);
@@ -97,12 +104,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ================== SKOR TABLOSU (CANLI) ==================
+  // ============= SKOR TABLOSU (CANLI) =============
   function listenScoreboard() {
+    if (!scoreboardBody) return;
+
     db.collection("scores")
       .orderBy("bestScore", "desc")
       .onSnapshot((snapshot) => {
-        if (!scoreboardBody) return;
         scoreboardBody.innerHTML = "";
 
         let rank = 1;
@@ -130,15 +138,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   listenScoreboard();
 
-  // ================== YILBAŞI OYUNU ==================
+  // ==================== OYUN ====================
   if (!canvas || !ctx || !startGameBtn) return;
 
   let basket = {
-  x: (canvas.width - 50) / 2,
-  y: canvas.height - 40,  // her zaman alt kenarın biraz üstü
-  width: 50,
-  height: 22
-};
+    x: (canvas.width - 50) / 2,
+    y: canvas.height - 40,
+    width: 50,
+    height: 22
+  };
+
   let items = [];
   let score = 0;
   let timeLeft = 35;
@@ -151,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let spawnIntervalId = null;
   let timerIntervalId = null;
 
-  // Klavye kontrolleri + scroll engelleme
+  // Scroll engelle + klavye kontrol
   document.addEventListener(
     "keydown",
     (e) => {
@@ -171,7 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "ArrowRight") moveRight = false;
   });
 
-  // Dokunmatik kontrol + scroll engelleme
+  // Dokunmatik
   canvas.addEventListener(
     "touchmove",
     (e) => {
@@ -184,7 +193,6 @@ document.addEventListener("DOMContentLoaded", () => {
     { passive: false }
   );
 
-  // Farklı tipte düşen objeler
   function spawnItem() {
     const r = Math.random();
     let type;
@@ -296,8 +304,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (it.type === "clock") {
           timeLeft += 5;
         } else if (it.type === "trap") {
-          // Kuru kafa: skor 0, oyun devam
-          score = 0;
+          score = 0; // kuru kafa → skor 0, oyun devam
         }
 
         scoreDisplay.textContent = "Skor: " + score;
@@ -348,33 +355,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1000);
   }
 
-if (startGameBtn) {
-  startGameBtn.addEventListener("click", () => {
-    const rawCode = (prompt("Kodunu yaz (örn: MEGANESARISINE)") || "")
-      .trim()
-      .toUpperCase();
+  // ============= OYUNU BAŞLAT BUTONU =============
+  if (startGameBtn) {
+    startGameBtn.addEventListener("click", () => {
+      const rawCode = (prompt("Kodunu yaz (örn: MEGANESARISINE)") || "")
+        .trim()
+        .toUpperCase();
 
-    if (!rawCode) {
-      alert("Kod girmeden oyun başlayamaz.");
-      return;
-    }
-    if (!playerMap[rawCode]) {
-      alert("Geçersiz kod. (8 kişiden birinin kodu olmalı)");
-      return;
-    }
+      if (!rawCode) {
+        alert("Kod girmeden oyun başlayamaz.");
+        return;
+      }
+      if (!playerMap[rawCode]) {
+        alert("Geçersiz kod. (8 kişiden birinin kodu olmalı)");
+        return;
+      }
 
-    currentCode = rawCode;
-    clearIntervals();
-    resetGameState();
+      currentCode = rawCode;
+      clearIntervals();
+      resetGameState();
 
-    gameRunning = true;
-    spawnItem();
-    spawnIntervalId = setInterval(() => {
-      if (gameRunning) spawnItem();
-    }, 650);
+      gameRunning = true;
+      spawnItem();
+      spawnIntervalId = setInterval(() => {
+        if (gameRunning) spawnItem();
+      }, 650);
 
-    startTimer();
-    gameLoop();
-  });
-}
-
+      startTimer();
+      gameLoop();
+    });
+  }
+});
