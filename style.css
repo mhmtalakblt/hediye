@@ -1686,3 +1686,36 @@ body::after {
     font-size: 11px;
   }
 }
+
+
+
+.mini-game-btn-fixed {
+  display: block;
+  width: 80%;
+  max-width: 260px;
+  margin: 20px auto 0 auto;
+  padding: 14px 18px;
+  text-align: center;
+  border-radius: 14px;
+  background: linear-gradient(to right, #00c851, #009432);
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.mini-game-btn-fixed:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.5);
+}
+
+/* Mobilde tam ortalanması için */
+@media (max-width: 500px) {
+  .mini-game-btn-fixed {
+    width: 90%;
+    font-size: 16px;
+  }
+}
+
