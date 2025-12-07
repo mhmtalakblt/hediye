@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ================== DOM ELEMANLARI ==================
   const scoreboardBody = document.getElementById("scoreboardBody");
-  const gamePlayerCodeInput = document.getElementById("gamePlayerCode");
   const startGameBtn = document.getElementById("startGameBtn");
   const scoreDisplay = document.getElementById("gameScoreDisplay");
   const timerDisplay = document.getElementById("gameTimerDisplay");
@@ -349,31 +348,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1000);
   }
 
-  if (startGameBtn) {
-    startGameBtn.addEventListener("click", () => {
-      const rawCode = (gamePlayerCodeInput.value || "").trim().toUpperCase();
+if (startGameBtn) {
+  startGameBtn.addEventListener("click", () => {
+    const rawCode = (prompt("Kodunu yaz (örn: MEGANESARISINE)") || "")
+      .trim()
+      .toUpperCase();
 
-      if (!rawCode) {
-        alert("Önce kodunu yaz.");
-        return;
-      }
-      if (!playerMap[rawCode]) {
-        alert("Geçersiz kod. (8 kişiden birinin kodu olmalı)");
-        return;
-      }
+    if (!rawCode) {
+      alert("Kod girmeden oyun başlayamaz.");
+      return;
+    }
+    if (!playerMap[rawCode]) {
+      alert("Geçersiz kod. (8 kişiden birinin kodu olmalı)");
+      return;
+    }
 
-      currentCode = rawCode;
-      clearIntervals();
-      resetGameState();
+    currentCode = rawCode;
+    clearIntervals();
+    resetGameState();
 
-      gameRunning = true;
-      spawnItem();
-      spawnIntervalId = setInterval(() => {
-        if (gameRunning) spawnItem();
-      }, 650);
+    gameRunning = true;
+    spawnItem();
+    spawnIntervalId = setInterval(() => {
+      if (gameRunning) spawnItem();
+    }, 650);
 
-      startTimer();
-      gameLoop();
-    });
-  }
-});
+    startTimer();
+    gameLoop();
+  });
+}
+
