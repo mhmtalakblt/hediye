@@ -1512,3 +1512,88 @@ body::after {
     max-width: 100%;
   }
 }
+
+
+
+
+
+/* ===== MINI GAME FORM + SKOR TABLOSU ===== */
+
+.mini-game-test {
+  margin: 16px 0;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.9);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+  font-size: 13px;
+}
+
+.mini-game-info {
+  font-size: 13px;
+  color: #9ca3af;
+  margin-bottom: 6px;
+}
+
+.mini-game-test label {
+  display: block;
+  margin-top: 8px;
+  margin-bottom: 2px;
+  font-size: 13px;
+  color: #e5e7eb;
+}
+
+.mini-game-test input {
+  width: 100%;
+  padding: 7px 8px;
+  border-radius: 8px;
+  border: 1px solid #4b5563;
+  margin-bottom: 4px;
+  background: #020617;
+  color: #f9fafb;
+  font-size: 13px;
+}
+
+.mini-game-test button {
+  margin-top: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #4ade80, #22c55e);
+  color: #022c22;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.scoreboard-area {
+  margin-top: 18px;
+}
+
+.scoreboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.scoreboard-table th,
+.scoreboard-table td {
+  border-bottom: 1px solid rgba(55, 65, 81, 0.8);
+  padding: 6px 4px;
+  text-align: left;
+}
+
+.scoreboard-table th {
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+.scoreboard-table tbody tr:nth-child(1) td {
+  color: #fde68a;
+}
+
+.scoreboard-table tbody tr:nth-child(2) td {
+  color: #bfdbfe;
+}
+
+.scoreboard-table tbody tr:nth-child(3) td {
+  color: #bbf7d0;
+}
