@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
+  />
+  <title>Mini Game | Skor Tablosu</title>
+  <link rel="stylesheet" href="style.css?v=3" />
+</head>
+
+<body class="gift-page">
+  <div class="gift-wrapper" style="max-width: 600px;">
+    <h1>🎮 Mini Game</h1>
+    <p style="margin-bottom: 8px;">
+      Oyun mantığını sonra ekleyeceğiz; şu an amaç Firebase’e skor gönderip
+      canlı skor tablosunu çalıştırmak.
+    </p>
+
+    <!-- TEST FORMU (oyun hazır olana kadar) -->
+    <div class="mini-game-test">
+      <h2>Test Skor Gönder</h2>
+      <p class="mini-game-info">
+        Şimdilik buradan manuel skor gönder. Oyun bittiğinde JS içinden
+        bu fonksiyona çağrı yapacağız.
+      </p>
+
+      <label for="playerCode">Oyuncu kodu</label>
+      <input
+        id="playerCode"
+        type="text"
+        placeholder="Örn: MEGANESARISINE"
+        autocomplete="off"
+      />
+
+      <label for="playerScore">Skor</label>
+      <input
+        id="playerScore"
+        type="number"
+        placeholder="100"
+      />
+
+      <button id="sendScoreBtn">Skoru Gönder</button>
+      <p id="scoreMessage" class="quiz-message"></p>
+    </div>
+
+    <!-- SKOR TABLOSU -->
+    <div class="scoreboard-area">
+      <h2>Skor Tablosu</h2>
+      <p class="mini-game-info">
+        En yüksek skoruna göre sıralı, Firestore’dan canlı güncellenir.
+      </p>
+      <table class="scoreboard-table">
+        <thead>
+          <tr>
+            <th>Sıra</th>
+            <th>İsim</th>
+            <th>Kod</th>
+            <th>En Yüksek Skor</th>
+          </tr>
+        </thead>
+        <tbody id="scoreboardBody">
+          <!-- JS ile doldurulacak -->
+        </tbody>
+      </table>
+    </div>
+
+    <a href="hediye.html" class="back-link" style="margin-top: 20px; display:block;">
+      🎁 Hediyeye geri dön
+    </a>
+  </div>
+
+  <!-- Firebase SDK (compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+  <!-- Oyun + skor JS -->
+  <script src="game.js?v=2"></script>
+</body>
+</html>
