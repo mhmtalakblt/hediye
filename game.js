@@ -146,6 +146,144 @@ if (sendScoreBtn) {
   });
 }
 
+
+/* ========== YILBAŞI OYUNU: SNOW BALL CATCHER ========== */
+
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+const startBtn = document.getElementById("startGameBtn");
+const scoreDisplay = document.getElementById("gameScoreDisplay");
+const timerDisplay = document.getElementById("gameTimerDisplay");
+
+let basket = { x: 140, y: 440, width: 40, height: 20 };
+let items = [];
+let score = 0;
+let timeLeft = 20;
+let gameRunning = false;
+
+// klavye kontrol
+let moveLeft = false;
+let moveRight = false;
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowLeft") moveLeft = true;
+  if (e.key === "ArrowRight") moveRight = true;
+});
+document.addEventListener("keyup", (e) => {
+  if (e.key === "ArrowLeft") moveLeft = false;
+  if (e.key === "ArrowRight") moveRight = false;
+});
+
+// dokunmatik (mobil)
+canvas.addEventListener("touchmove", (e) => {
+  const touch = e.touches[0];
+  const rect = canvas.getBoundingClientRect();
+  const posX = touch.clientX - rect.left;
+  basket.x = posX - basket.width / 2;
+});
+
+// süs generate
+function spawnItem() {
+  const colors = ["#ff4444", "#ffd93d", "#ff8c00", "#00eaff"];
+  items.push({
+    x: Math.random() * 300,
+    y: -20,
+    size: 16,
+    color: colors[Math.floor(Math.random() * colors.length)]
+  });
+}
+
+// oyun loop
+function gameLoop() {
+  if (!gameRunning) return;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // basket hareket
+  if (moveLeft) basket.x -= 5;
+  if (moveRight) basket.x += 5;
+
+  // sınırlar
+  if (basket.x < 0) basket.x = 0;
+  if (basket.x + basket.width > 320) basket.x = 320 - basket.width;
+
+  // basket çiz
+  ctx.fillStyle = "#eab308";
+  ctx.fillRect(basket.x, basket.y, basket.width, basket.height);
+
+  // süs çiz + hareket
+  items.forEach((it, index) => {
+    it.y += 3;
+
+    ctx.beginPath();
+    ctx.fillStyle = it.color;
+    ctx.arc(it.x, it.y, it.size, 0, Math.PI * 2);
+    ctx.fill();
+
+    // yakalandı mı?
+    if (
+      it.y + it.size > basket.y &&
+      it.x > basket.x &&
+      it.x < basket.x + basket.width
+    ) {
+      score += 10;
+      scoreDisplay.textContent = "Skor: " + score;
+      items.splice(index, 1);
+    }
+
+    // ekran dışı
+    if (it.y > 500) items.splice(index, 1);
+  });
+
+  requestAnimationFrame(gameLoop);
+}
+
+// timer
+function startTimer(playerCode) {
+  timeLeft = 20;
+  timerDisplay.textContent = "Süre: " + timeLeft;
+
+  const count = setInterval(() => {
+    if (!gameRunning) return clearInterval(count);
+
+    timeLeft--;
+    timerDisplay.textContent = "Süre: " + timeLeft;
+
+    if (timeLeft <= 0) {
+      clearInterval(count);
+      gameRunning = false;
+
+      // Firebase'e skor kaydet
+      submitScore(playerCode, score);
+
+      alert("Oyun bitti! Skorun: " + score);
+    }
+  }, 1000);
+}
+
+// oyunu başlat
+startBtn.addEventListener("click", () => {
+  const currentCode = prompt("Kodunu yaz (ör: MEGANESARISINE)").toUpperCase();
+
+  if (!playerMap[currentCode]) {
+    alert("Geçersiz kod!");
+    return;
+  }
+
+  score = 0;
+  scoreDisplay.textContent = "Skor: 0";
+
+  items = [];
+  gameRunning = true;
+
+  spawnItem();
+  setInterval(() => gameRunning && spawnItem(), 700);
+
+  startTimer(currentCode);
+  gameLoop();
+});
+
 // Sayfa açılınca canlı tabloyu dinle
 listenScoreboard();
 
