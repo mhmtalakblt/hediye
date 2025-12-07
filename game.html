@@ -7,11 +7,11 @@
     content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
   />
   <title>Yılbaşı Mini Game | Skor Tablosu</title>
-  <link rel="stylesheet" href="style.css?v=6" />
+  <link rel="stylesheet" href="style.css?v=7" />
 </head>
 
 <body class="gift-page">
-  <div class="gift-wrapper" style="max-width: 600px;">
+  <div class="gift-wrapper" style="max-width: 420px;">
 
     <header class="game-header">
       <h1>🎮 Yılbaşı Mini Game</h1>
@@ -31,7 +31,8 @@
         <button id="closeRulesBtn" class="rules-close-btn">×</button>
         <h2>Nasıl oynanır?</h2>
         <ul>
-          <li>Önce kendi <strong>kodunu</strong> yaz (örn: <code>STARDUCKS</code>).</li>
+          <li><strong>Oyunu Başlat</strong> butonuna basınca senden kod istenir
+            (örn: <code>MEGANESARISINE</code>).</li>
           <li><strong>Ok tuşları</strong> veya <strong>ekrana sürükleme</strong> ile
             hediye kutusunu sağa–sola hareket ettir.</li>
           <li>🎄 🎁 ⭐ 🎀 <strong>süsler</strong>: <span class="rules-score">+10 puan</span></li>
@@ -39,7 +40,7 @@
           <li>💣 <strong>bomba</strong>: <span class="rules-score">-20 puan</span></li>
           <li>⏰ <strong>saat</strong>: <span class="rules-score">+5 saniye süre</span></li>
           <li>☠️ <strong>kuru kafa</strong>: Skorunu <strong>0’a düşürür</strong>,
-            oyun devam eder (hiçbir uyarı çıkmaz).</li>
+            oyun devam eder.</li>
           <li>Başlangıç süresi <strong>35 saniye</strong>. Süre bitince skorun
             kaydedilir ve tabloda görünür.</li>
         </ul>
@@ -48,17 +49,6 @@
 
     <!-- OYUN ALANI -->
     <section id="gameArea">
-      <label for="gamePlayerCode" class="game-label">
-        Kodun (örn: STARDUCKS):
-      </label>
-      <input
-        id="gamePlayerCode"
-        type="text"
-        placeholder="Kodunu yaz "örn:STARDUCKS""
-        autocomplete="off"
-        class="game-input"
-      />
-
       <button id="startGameBtn" class="mini-game-btn game-start-btn">
         Oyunu Başlat
       </button>
@@ -101,6 +91,6 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
   <!-- Oyun + skor JS -->
-  <script src="game.js?v=5"></script>
+  <script src="game.js?v=6"></script>
 </body>
 </html>
