@@ -22,7 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
     BECHOSENNDAYI: "Sanem",
     YUSUFIM: "Yusuf",
     AYSENUR26: "Ayşenur",
-    IPEK2026: "İpek"
+    IPEK2026: "İpek",
+    ALİ: "Ali"
   };
 
   // ================== DOM ELEMANLARI ==================
