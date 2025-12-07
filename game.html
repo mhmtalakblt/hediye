@@ -7,45 +7,67 @@
     content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
   />
   <title>Yılbaşı Mini Game | Skor Tablosu</title>
-  <link rel="stylesheet" href="style.css?v=4" />
+  <link rel="stylesheet" href="style.css?v=5" />
 </head>
 
 <body class="gift-page">
   <div class="gift-wrapper" style="max-width: 600px;">
-    <h1>🎮 Yılbaşı Mini Game</h1>
-    <p style="margin-bottom: 10px;">
-      Kodunu yaz, oyunu başlat, düşen yılbaşı süslerini hediye kutusuyla yakala.
-      Süre bitince skorun Firestore'a kaydedilecek ve tabloda görünecek.
-    </p>
+
+    <header class="game-header">
+      <h1>🎮 Yılbaşı Mini Game</h1>
+      <p class="game-subtitle">
+        Düşen yılbaşı emojilerini hediye kutusuyla yakala, süren bitmeden
+        en yüksek skoru yap!
+      </p>
+    </header>
+
+    <!-- NASIL OYNANIR -->
+    <section class="rules-box">
+      <h2>Nasıl oynanır?</h2>
+      <ul>
+        <li>Önce kendi <strong>kodunu</strong> yaz (ör: <code>MEGANESARISINE</code>).</li>
+        <li><strong>Ok tuşları</strong> veya <strong>ekrana sürükleme</strong> ile hediye kutusunu sağa–sola hareket ettir.</li>
+        <li>🎄 🎁 ⭐ 🎀 <strong>süsler</strong>: <span class="rules-score">+10 puan</span></li>
+        <li>❄️ <strong>kar taneleri</strong>: <span class="rules-score">+15 puan</span></li>
+        <li>💣 <strong>bomba</strong>: <span class="rules-score">-20 puan</span></li>
+        <li>⏰ <strong>saat</strong>: <span class="rules-score">+5 saniye süre</span></li>
+        <li>☠️ <strong>tuzak emojisi</strong>: Oyunu anında bitirir, ekranda
+          “Tuzaga düştün!” yazar.</li>
+        <li>Başlangıç süresi <strong>35 saniye</strong>. Süre bittiğinde skorun
+          Firebase’e kaydedilir ve tabloda görünür.</li>
+      </ul>
+    </section>
 
     <!-- OYUN ALANI -->
-    <div id="gameArea">
-      <label for="gamePlayerCode" style="font-size:13px;">Kodun (örn: MEGANESARISINE):</label>
+    <section id="gameArea">
+      <label for="gamePlayerCode" class="game-label">
+        Kodun (örn: MEGANESARISINE):
+      </label>
       <input
         id="gamePlayerCode"
         type="text"
         placeholder="Kodunu yaz"
         autocomplete="off"
-        style="width:100%;padding:7px 8px;border-radius:8px;border:1px solid #4b5563;background:#020617;color:#f9fafb;font-size:13px;margin:4px 0 8px;"
+        class="game-input"
       />
 
-      <button id="startGameBtn" class="mini-game-btn" style="margin-bottom:10px;">
+      <button id="startGameBtn" class="mini-game-btn game-start-btn">
         Oyunu Başlat
       </button>
 
-      <div style="text-align:center;">
+      <div class="game-canvas-wrapper">
         <canvas id="gameCanvas" width="320" height="480"></canvas>
       </div>
 
-      <p id="gameScoreDisplay">Skor: 0</p>
-      <p id="gameTimerDisplay">Süre: 20</p>
-    </div>
+      <p id="gameScoreDisplay" class="game-info-text">Skor: 0</p>
+      <p id="gameTimerDisplay" class="game-info-text">Süre: 35</p>
+    </section>
 
     <!-- SKOR TABLOSU -->
-    <div class="scoreboard-area" style="margin-top:20px;">
+    <section class="scoreboard-area">
       <h2>Skor Tablosu</h2>
-      <p style="font-size:13px;color:#9ca3af;margin-bottom:6px;">
-        En yüksek skoruna göre sıralı, Firestore'dan canlı güncellenir.
+      <p class="game-subtitle small">
+        En yüksek skoruna göre sıralıdır ve Firestore’dan canlı güncellenir.
       </p>
       <table class="scoreboard-table">
         <thead>
@@ -56,10 +78,10 @@
           </tr>
         </thead>
         <tbody id="scoreboardBody">
-          <!-- JS ile doldurulacak -->
+          <!-- JS dolduruyor -->
         </tbody>
       </table>
-    </div>
+    </section>
 
     <a href="hediye.html" class="back-link" style="margin-top: 20px; display:block;">
       🎁 Hediyeye geri dön
@@ -71,6 +93,6 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
   <!-- Oyun + skor JS -->
-  <script src="game.js?v=3"></script>
+  <script src="game.js?v=4"></script>
 </body>
 </html>
