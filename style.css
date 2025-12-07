@@ -777,6 +777,33 @@ body::after {
     transform: rotate(18deg);
   }
 }
+/* MINI GAME BUTTON */
+.mini-game-section {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.mini-game-btn {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #fff;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.mini-game-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.5);
+}
+
+.mini-game-btn:active {
+  transform: scale(0.95);
+}
 
 /* ============= MOBİL ============= */
 
