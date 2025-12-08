@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ESRA2026: { className: "ornament-blue", name: "Esra" },
     HIRA2026: { className: "ornament-green", name: "Hira" },
     BECHOSENNDAYI: { className: "ornament-purple", name: "Sanem" },
-    YUSUFIM: { className: "ornament-pink", name: "Yusufi" },
+    TOROSLU: { className: "ornament-pink", name: "Yusufi" },
     AYSENUR26: { className: "ornament-teal", name: "Ayşenur" },
     IPEK2026: { className: "ornament-silver", name: "İpek" }
   };
