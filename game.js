@@ -22,7 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
     BECHOSENNDAYI: "Sanem",
     YUSUFIM: "Yusuf",
     AYSENUR26: "Ayşenur",
-    IPEK2026: "İpek"
+    IPEK2026: "İpek",
+    AEZAKMI: "Ali" 
     // istersen buraya STARDUCKS vs ekleyebilirsin
   };
 
@@ -358,7 +359,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ============= OYUNU BAŞLAT BUTONU =============
   if (startGameBtn) {
     startGameBtn.addEventListener("click", () => {
-      const rawCode = (prompt("Kodunu yaz (örn: MEGANESARISINE)") || "")
+      const rawCode = (prompt("Kodunu yaz (örn: STARDUCKS)") || "")
         .trim()
         .toUpperCase();
 
