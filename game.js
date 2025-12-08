@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ESRA2026: "Esra",
     HIRA2026: "Hira",
     BECHOSENNDAYI: "Sanem",
-    YUSUFIM: "Yusuf",
+    TOROSLU: "Yusuf",
     AYSENUR26: "Ayşenur",
     IPEK2026: "İpek",
     AEZAKMI: "Ali" 
